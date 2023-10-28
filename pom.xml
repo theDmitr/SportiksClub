@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dmitr.app</groupId>
+    <groupId>dmitr.app.sportiksclub</groupId>
     <artifactId>SportiksClub</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>SportiksClub</name>
@@ -70,7 +70,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>dmitr.app.sportiksclub/dmitr.app.sportiksclub.HelloApplication</mainClass>
+                            <mainClass>dmitr.app.sportiksclub/dmitr.app.sportiksclub.SportiksClub</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

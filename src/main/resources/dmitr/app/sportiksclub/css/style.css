@@ -1,0 +1,40 @@
+* {
+    -fx-background-color: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #698aff;
+    -fx-border-color: #698aff;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #e5ebff;
+}
+
+.label {
+    -fx-text-fill: #698aff;
+    -fx-background-color: transparent;
+}
+
+.text-field {
+    -fx-background-color: white #698aff #698aff #698aff;
+    -fx-border-color: #698aff;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.password-field {
+    -fx-background-color: white #698aff #698aff #698aff;
+    -fx-border-color: #698aff;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#pane {
+    -fx-background-image: url("../image/background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
