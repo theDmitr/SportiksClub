@@ -11,7 +11,7 @@ public class Utils {
         if (!appHome.exists())
             appHome.mkdir();
 
-        return "jdbc:sqlite:" + appHome.getAbsolutePath() + "\\sportiksclub.db";
+        return "jdbc:sqlite:" + appHome.getAbsolutePath() + "/sportiksclub.db";
     }
 
 }

@@ -20,11 +20,11 @@ public class Database {
         }
     }
 
-    public final ConnectionSource connection;
+    private final ConnectionSource connectionSource;
 
     private Database() throws SQLException, ClassNotFoundException {
         String path = Utils.getDatabasePath();
-        connection = new JdbcConnectionSource(path);
+        connectionSource = new JdbcConnectionSource(path);
         setupDatabase();
     }
 
@@ -33,14 +33,18 @@ public class Database {
     }
 
     private void setupDatabase() throws SQLException {
-        TableUtils.createTableIfNotExists(connection, User.class);
-        TableUtils.createTableIfNotExists(connection, Role.class);
-        TableUtils.createTableIfNotExists(connection, Post.class);
-        TableUtils.createTableIfNotExists(connection, Person.class);
-        TableUtils.createTableIfNotExists(connection, MembershipType.class);
-        TableUtils.createTableIfNotExists(connection, Membership.class);
-        TableUtils.createTableIfNotExists(connection, Employee.class);
-        TableUtils.createTableIfNotExists(connection, Customer.class);
+        TableUtils.createTableIfNotExists(connectionSource, User.class);
+        TableUtils.createTableIfNotExists(connectionSource, Role.class);
+        TableUtils.createTableIfNotExists(connectionSource, Post.class);
+        TableUtils.createTableIfNotExists(connectionSource, Person.class);
+        TableUtils.createTableIfNotExists(connectionSource, MembershipType.class);
+        TableUtils.createTableIfNotExists(connectionSource, Membership.class);
+        TableUtils.createTableIfNotExists(connectionSource, Employee.class);
+        TableUtils.createTableIfNotExists(connectionSource, Customer.class);
+    }
+
+    public ConnectionSource getConnectionSource() {
+        return connectionSource;
     }
 
 }

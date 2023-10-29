@@ -4,6 +4,7 @@ module dmitr.app.sportiksclub {
 
     requires org.xerial.sqlitejdbc;
     requires ormlite.jdbc;
+    requires java.sql;
 
     opens dmitr.app.sportiksclub to javafx.fxml;
     opens dmitr.app.sportiksclub.controller to javafx.fxml;

@@ -1,6 +1,5 @@
 package dmitr.app.sportiksclub;
 
-import dmitr.app.sportiksclub.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,7 +18,6 @@ public class SportiksClub extends Application {
         stage.setTitle("Sportik`s club | Auth");
         stage.setScene(scene);
         stage.show();
-        Database.getInstance();
     }
 
 }
