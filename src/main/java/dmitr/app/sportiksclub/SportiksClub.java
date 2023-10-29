@@ -1,11 +1,16 @@
 package dmitr.app.sportiksclub;
 
+import dmitr.app.sportiksclub.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SportiksClub extends Application {
+
+    public static void main(String[] args) {
+        launch();
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -14,10 +19,7 @@ public class SportiksClub extends Application {
         stage.setTitle("Sportik`s club | Auth");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
+        Database.getInstance();
     }
 
 }

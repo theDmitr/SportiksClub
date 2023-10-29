@@ -12,7 +12,8 @@ public class Post {
     @DatabaseField(canBeNull = false)
     private String name;
 
-    public Post() { }
+    public Post() {
+    }
 
     public Post(String name) {
         this.name = name;

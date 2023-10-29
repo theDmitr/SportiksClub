@@ -3,7 +3,7 @@ package dmitr.app.sportiksclub.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 @DatabaseTable(tableName = "membershipTypes")
 public class MembershipType {
@@ -15,14 +15,15 @@ public class MembershipType {
     private String name;
 
     @DatabaseField(canBeNull = false)
-    private LocalDate duration;
+    private Date duration;
 
     @DatabaseField(canBeNull = false)
     private boolean hasTrainer;
 
-    public MembershipType() { }
+    public MembershipType() {
+    }
 
-    public MembershipType(String name, LocalDate duration, boolean hasTrainer) {
+    public MembershipType(String name, Date duration, boolean hasTrainer) {
         this.name = name;
         this.duration = duration;
         this.hasTrainer = hasTrainer;
@@ -36,7 +37,7 @@ public class MembershipType {
         return name;
     }
 
-    public LocalDate getDuration() {
+    public Date getDuration() {
         return duration;
     }
 

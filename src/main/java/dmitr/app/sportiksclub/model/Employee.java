@@ -3,7 +3,7 @@ package dmitr.app.sportiksclub.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 @DatabaseTable(tableName = "employees")
 public class Employee {
@@ -12,34 +12,35 @@ public class Employee {
     private int id;
 
     @DatabaseField(foreign = true)
-    private int userId;
+    private User user;
 
     @DatabaseField(foreign = true)
-    private int postId;
+    private Post post;
 
     @DatabaseField(canBeNull = false)
-    private LocalDate experience;
+    private Date experience;
 
-    public Employee() { }
+    public Employee() {
+    }
 
-    public Employee(int userId, int postId) {
-        this.userId = userId;
-        this.postId = postId;
+    public Employee(User user, Post post) {
+        this.user = user;
+        this.post = post;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public int getPostId() {
-        return postId;
+    public Post getPost() {
+        return post;
     }
 
-    public LocalDate getExperience() {
+    public Date getExperience() {
         return experience;
     }
 

@@ -16,7 +16,8 @@ public class User {
     @DatabaseField(canBeNull = false)
     private String password;
 
-    public User() { }
+    public User() {
+    }
 
     public User(String login, String password) {
         this.login = login;

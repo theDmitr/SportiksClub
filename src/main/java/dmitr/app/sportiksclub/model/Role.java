@@ -10,24 +10,25 @@ public class Role {
     private int id;
 
     @DatabaseField(foreign = true)
-    private int userId;
+    private User user;
 
     @DatabaseField(canBeNull = false)
     private String name;
 
-    public Role() { }
+    public Role() {
+    }
+
+    public Role(User user, String name) {
+        this.user = user;
+        this.name = name;
+    }
 
     public int getId() {
         return id;
     }
 
-    public Role(int userId, String name) {
-        this.userId = userId;
-        this.name = name;
-    }
-
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public String getName() {

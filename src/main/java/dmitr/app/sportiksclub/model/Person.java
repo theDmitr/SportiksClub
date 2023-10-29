@@ -10,7 +10,7 @@ public class Person {
     private int id;
 
     @DatabaseField(foreign = true)
-    private int userId;
+    private User user;
 
     @DatabaseField(canBeNull = false)
     private String name;
@@ -24,10 +24,11 @@ public class Person {
     @DatabaseField(canBeNull = false)
     private boolean sex;
 
-    public Person() { }
+    public Person() {
+    }
 
-    public Person(int userId, String name, String lastname, String patronymic, boolean sex) {
-        this.userId = userId;
+    public Person(User user, String name, String lastname, String patronymic, boolean sex) {
+        this.user = user;
         this.name = name;
         this.lastname = lastname;
         this.patronymic = patronymic;
@@ -38,8 +39,8 @@ public class Person {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public String getName() {

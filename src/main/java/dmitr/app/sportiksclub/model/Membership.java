@@ -3,7 +3,7 @@ package dmitr.app.sportiksclub.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 @DatabaseTable(tableName = "memberships")
 public class Membership {
@@ -12,28 +12,30 @@ public class Membership {
     private int id;
 
     @DatabaseField(foreign = true)
-    private int customerId;
+    private Customer customer;
 
     @DatabaseField(foreign = true)
-    private int membershipTypeId;
+    private MembershipType membershipType;
 
     @DatabaseField(canBeNull = false)
     private boolean status;
 
     @DatabaseField(canBeNull = false)
-    private LocalDate beginDate;
+    private Date beginDate;
 
     @DatabaseField(canBeNull = false)
-    private LocalDate endDate;
+    private Date endDate;
 
     @DatabaseField(canBeNull = false)
     private float discount;
 
-    public Membership() { }
+    public Membership() {
+    }
 
-    public Membership(int customerId, int membershipTypeId, LocalDate beginDate, LocalDate endDate, float discount) {
-        this.customerId = customerId;
-        this.membershipTypeId = membershipTypeId;
+    public Membership(Customer customer, MembershipType membershipType,
+                      Date beginDate, Date endDate, float discount) {
+        this.customer = customer;
+        this.membershipType = membershipType;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.discount = discount;
@@ -47,19 +49,19 @@ public class Membership {
         return status;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public int getMembershipTypeId() {
-        return membershipTypeId;
+    public MembershipType getMembershipType() {
+        return membershipType;
     }
 
-    public LocalDate getBeginDate() {
+    public Date getBeginDate() {
         return beginDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 

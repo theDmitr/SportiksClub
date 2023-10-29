@@ -10,20 +10,21 @@ public class Customer {
     private int id;
 
     @DatabaseField(foreign = true)
-    private int userId;
+    private User user;
 
-    public Customer() { }
+    public Customer() {
+    }
 
-    public Customer(int userId) {
-        this.userId = userId;
+    public Customer(User user) {
+        this.user = user;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
 }
