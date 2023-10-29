@@ -2,7 +2,6 @@ module dmitr.app.sportiksclub {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires org.xerial.sqlitejdbc;
     requires ormlite.jdbc;
     requires java.sql;
 
