@@ -14,9 +14,10 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="95.0" minHeight="49.0" prefHeight="51.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="95.0" minHeight="49.0" prefHeight="51.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="76.0" minHeight="1.0" prefHeight="74.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="127.0" minHeight="22.0" prefHeight="94.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="127.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -41,18 +42,29 @@
             <Insets bottom="10.0" left="10.0" top="10.0" />
         </GridPane.margin>
     </Label>
-    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER">
-        <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="250.0" text="Сотрудники" />
-        <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Клиенты" />
-        <Button layoutX="101.0" layoutY="100.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Абонементы" />
-        <Button layoutX="101.0" layoutY="150.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Абонементы (Клиенты)" />
-    </VBox>
-   <VBox alignment="CENTER" layoutX="76.0" layoutY="75.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-      <children>
-         <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="250.0" text="Сотрудники" />
-         <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Клиенты" />
-         <Button layoutX="101.0" layoutY="100.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Абонементы" />
-         <Button layoutX="101.0" layoutY="150.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Абонементы (Клиенты)" />
-      </children>
-   </VBox>
+
+   <GridPane hgap="10.0" prefWidth="402.0" vgap="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+     <columnConstraints>
+         <ColumnConstraints />
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints />
+     </rowConstraints>
+       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="1" GridPane.valignment="CENTER">
+           <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="250.0" text="Сотрудники" />
+           <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Клиенты" />
+       </VBox>
+       <VBox alignment="CENTER" layoutX="76.0" layoutY="75.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="1">
+           <children>
+               <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="250.0" text="Роли" />
+               <Button layoutX="101.0" layoutY="100.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Абонементы" />
+           </children>
+       </VBox>
+       <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" text="Абонементы (Клиенты)" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+   </GridPane>
 </GridPane>
