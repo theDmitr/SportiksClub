@@ -6,6 +6,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import dmitr.app.sportiksclub.model.*;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 public class DatabaseHelper {
 
@@ -17,6 +19,8 @@ public class DatabaseHelper {
     private static final Dao<Membership, Integer> membershipDao;
     private static final Dao<Employee, Integer> employeeDao;
     private static final Dao<Customer, Integer> customerDao;
+
+    private static User authorizedUser;
 
     static {
         ConnectionSource connectionSource = Database.getInstance().getConnectionSource();
@@ -64,6 +68,32 @@ public class DatabaseHelper {
 
     public static Dao<Customer, Integer> getCustomerDao() {
         return customerDao;
+    }
+
+    public static boolean authUser(String login, String password) {
+        List<User> users = null;
+
+        Map<String, Object> values = Map.of(
+                "login", login,
+                "password", password
+        );
+
+        try {
+            users = userDao.queryForFieldValues(values);
+        } catch (SQLException ignored) {
+
+        }
+
+        if (users == null || users.isEmpty())
+            return false;
+
+        authorizedUser = users.get(0);
+
+        return true;
+    }
+
+    public static User getAuthorizedUser() {
+        return authorizedUser;
     }
 
 }

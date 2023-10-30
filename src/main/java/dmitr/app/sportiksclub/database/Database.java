@@ -23,6 +23,7 @@ public class Database {
     private final ConnectionSource connectionSource;
 
     private Database() throws SQLException, ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
         String path = Utils.getDatabasePath();
         connectionSource = new JdbcConnectionSource(path);
         setupDatabase();
