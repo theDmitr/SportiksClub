@@ -5,9 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="10.0" maxHeight="720" maxWidth="1280" minHeight="-Infinity" minWidth="-Infinity"
+<GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="10.0" maxHeight="720" maxWidth="1280" minHeight="-Infinity"
+          minWidth="-Infinity"
           prefHeight="300.0" prefWidth="550.0" stylesheets="@../css/style.css" vgap="10.0"
-          xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="dmitr.app.sportiksclub.controller.GuestMenuController">
+          xmlns="http://javafx.com/javafx/17.0.2-ea"
+          fx:controller="dmitr.app.sportiksclub.controller.GuestMenuController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>

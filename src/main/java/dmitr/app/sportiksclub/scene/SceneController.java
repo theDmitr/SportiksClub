@@ -1,6 +1,5 @@
 package dmitr.app.sportiksclub.scene;
 
-import dmitr.app.sportiksclub.SportiksClub;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,19 +8,25 @@ import java.io.IOException;
 
 public class SceneController {
 
-    public static void setScene(Stage stage, String path) {
-        FXMLLoader fxmlLoader = new FXMLLoader(SportiksClub.class.getResource(path));
-        Scene scene;
+    private static Stage stage;
+
+    public static void init(Stage stage) {
+        SceneController.stage = stage;
+    }
+
+    public static void setScene(dmitr.app.sportiksclub.scene.Scene scene) {
+        FXMLLoader fxmlLoader = new FXMLLoader(scene.getFilePath());
+        Scene stageScene;
 
         try {
-            scene = new Scene(fxmlLoader.load());
+            stageScene = new Scene(fxmlLoader.load());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
 
-        stage.setTitle("Sportik`s club | Auth");
-        stage.setScene(scene);
-        stage.show();
+        SceneController.stage.setTitle(scene.getCaption());
+        SceneController.stage.setScene(stageScene);
+        SceneController.stage.show();
     }
 
 }

@@ -12,7 +12,6 @@ import java.util.Map;
 public class DatabaseHelper {
 
     private static final Dao<User, Integer> userDao;
-    private static final Dao<Role, Integer> roleDao;
     private static final Dao<Post, Integer> postDao;
     private static final Dao<Person, Integer> personDao;
     private static final Dao<MembershipType, Integer> membershipTypeDao;
@@ -20,13 +19,12 @@ public class DatabaseHelper {
     private static final Dao<Employee, Integer> employeeDao;
     private static final Dao<Customer, Integer> customerDao;
 
-    private static User authorizedUser;
+    private static User authorizedUser = null;
 
     static {
         ConnectionSource connectionSource = Database.getInstance().getConnectionSource();
         try {
             userDao = DaoManager.createDao(connectionSource, User.class);
-            roleDao = DaoManager.createDao(connectionSource, Role.class);
             postDao = DaoManager.createDao(connectionSource, Post.class);
             personDao = DaoManager.createDao(connectionSource, Person.class);
             membershipTypeDao = DaoManager.createDao(connectionSource, MembershipType.class);
@@ -40,10 +38,6 @@ public class DatabaseHelper {
 
     public static Dao<User, Integer> getUserDao() {
         return userDao;
-    }
-
-    public static Dao<Role, Integer> getRoleDao() {
-        return roleDao;
     }
 
     public static Dao<Post, Integer> getPostDao() {
@@ -90,6 +84,10 @@ public class DatabaseHelper {
         authorizedUser = users.get(0);
 
         return true;
+    }
+
+    public static void logoutUser() {
+        authorizedUser = null;
     }
 
     public static User getAuthorizedUser() {

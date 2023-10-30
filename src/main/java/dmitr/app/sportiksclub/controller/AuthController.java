@@ -1,6 +1,8 @@
 package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
+import dmitr.app.sportiksclub.model.User;
+import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
 import dmitr.app.sportiksclub.util.Utils;
 import javafx.event.ActionEvent;
@@ -42,6 +44,14 @@ public class AuthController implements Initializable {
 
         Utils.getAlert(Alert.AlertType.INFORMATION, "Авторизация | Информация",
                 "Успешная авторизация!", "Вы авторизованы!").showAndWait();
+
+        User user = DatabaseHelper.getAuthorizedUser();
+
+        switch (user.getRole()) {
+            case ADMIN -> SceneController.setScene(Scene.ADMIN_MENU);
+            case EMPLOYEE -> SceneController.setScene(Scene.EMPLOYEE_MENU);
+            case CUSTOMER -> SceneController.setScene(Scene.CUSTOMER_MENU);
+        }
     }
 
     private void applyActions() {
@@ -57,7 +67,7 @@ public class AuthController implements Initializable {
         guestAuthButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Utils.getStageFromActionEvent(actionEvent), "view/GuestMenu.fxml");
+                SceneController.setScene(Scene.GUEST_MENU);
             }
         });
     }

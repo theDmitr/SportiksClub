@@ -3,7 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" id="pane" hgap="10.0" maxHeight="720" maxWidth="1280" minHeight="-Infinity"
+<GridPane xmlns:fx="http://javafx.com/fxml/1" id="pane" hgap="10.0" maxHeight="720" maxWidth="1280"
+          minHeight="-Infinity"
           minWidth="-Infinity" prefHeight="300.0" prefWidth="550.0" stylesheets="@../css/style.css"
           vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
           fx:controller="dmitr.app.sportiksclub.controller.AuthController">

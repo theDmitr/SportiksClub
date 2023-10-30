@@ -18,7 +18,7 @@ public class Person {
     @DatabaseField(canBeNull = false)
     private String lastname;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String patronymic;
 
     @DatabaseField(canBeNull = false)

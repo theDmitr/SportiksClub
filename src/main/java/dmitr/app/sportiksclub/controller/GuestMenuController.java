@@ -1,7 +1,7 @@
 package dmitr.app.sportiksclub.controller;
 
+import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
-import dmitr.app.sportiksclub.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ public class GuestMenuController implements Initializable {
         menuButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Utils.getStageFromActionEvent(actionEvent), "view/Auth.fxml");
+                SceneController.setScene(Scene.AUTH);
             }
         });
     }

@@ -1,10 +1,12 @@
 package dmitr.app.sportiksclub;
 
-import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.User;
+import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 public class SportiksClub extends Application {
 
@@ -14,14 +16,11 @@ public class SportiksClub extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /*FXMLLoader fxmlLoader = new FXMLLoader(SportiksClub.class.getResource("view/Auth.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Sportik`s club | Auth");
-        stage.setScene(scene);
-        stage.show();*/
-        SceneController.setScene(stage, "view/Auth.fxml");
-
-        DatabaseHelper.getUserDao().create(new User("123.", "123123"));
+        stage.getIcons().add(
+                new Image(Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/dumbbell.png")))
+        );
+        SceneController.init(stage);
+        SceneController.setScene(Scene.AUTH);
     }
 
 }

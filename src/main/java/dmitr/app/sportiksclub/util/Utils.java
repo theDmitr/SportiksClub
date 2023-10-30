@@ -1,9 +1,6 @@
 package dmitr.app.sportiksclub.util;
 
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -17,10 +14,6 @@ public class Utils {
             appHome.mkdir();
 
         return "jdbc:sqlite:" + appHome.getAbsolutePath() + "/sportiksclub.db";
-    }
-
-    public static Stage getStageFromActionEvent(ActionEvent actionEvent) {
-        return (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     }
 
     public static Alert getAlert(Alert.AlertType alertType, String caption, String header, String content) {
