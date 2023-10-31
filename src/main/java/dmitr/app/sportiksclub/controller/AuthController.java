@@ -4,6 +4,7 @@ import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
+import dmitr.app.sportiksclub.util.SportiksAlertType;
 import dmitr.app.sportiksclub.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,14 +36,13 @@ public class AuthController implements Initializable {
         boolean success = DatabaseHelper.authUser(login, password);
 
         if (!success) {
-            Utils.getAlert(
-                    Alert.AlertType.ERROR, "Авторизация | Ошибка",
+            SportiksAlertType.ERROR.getAlert("Авторизация | Ошибка",
                     "Произошла ошибка!", "Неверный логин или пароль!"
             ).showAndWait();
             return;
         }
 
-        Utils.getAlert(Alert.AlertType.INFORMATION, "Авторизация | Информация",
+        SportiksAlertType.INFORMATION.getAlert("Авторизация | Информация",
                 "Успешная авторизация!", "Вы авторизованы!").showAndWait();
 
         User user = DatabaseHelper.getAuthorizedUser();
