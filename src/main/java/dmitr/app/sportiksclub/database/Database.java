@@ -23,6 +23,7 @@ public class Database {
     private final ConnectionSource connectionSource;
 
     private Database() throws SQLException, ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
         String path = Utils.getDatabasePath();
         connectionSource = new JdbcConnectionSource(path);
         setupDatabase();
@@ -34,7 +35,6 @@ public class Database {
 
     private void setupDatabase() throws SQLException {
         TableUtils.createTableIfNotExists(connectionSource, User.class);
-        TableUtils.createTableIfNotExists(connectionSource, Role.class);
         TableUtils.createTableIfNotExists(connectionSource, Post.class);
         TableUtils.createTableIfNotExists(connectionSource, Person.class);
         TableUtils.createTableIfNotExists(connectionSource, MembershipType.class);
