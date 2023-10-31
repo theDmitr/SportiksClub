@@ -10,7 +10,8 @@ public enum Scene {
     GUEST_MENU("Sportik`s Club | Гость", SportiksClub.class.getResource("view/GuestMenu.fxml")),
     ADMIN_MENU("Sportik`s Club | Администратор", SportiksClub.class.getResource("view/AdminMenu.fxml")),
     EMPLOYEE_MENU("Sportik`s Club | Сотрудник", SportiksClub.class.getResource("view/EmployeeMenu.fxml")),
-    CUSTOMER_MENU("Sportik`s Club | Клиент", SportiksClub.class.getResource("view/CustomerMenu.fxml"));
+    CUSTOMER_MENU("Sportik`s Club | Клиент", SportiksClub.class.getResource("view/CustomerMenu.fxml")),
+    ABOUT("Sportik`s Club | О нас", SportiksClub.class.getResource("view/About.fxml"));
 
     private final String caption;
     private final URL filePath;

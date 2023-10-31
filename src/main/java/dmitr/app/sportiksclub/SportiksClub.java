@@ -1,7 +1,10 @@
 package dmitr.app.sportiksclub;
 
+import dmitr.app.sportiksclub.database.DatabaseHelper;
+import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
+import dmitr.app.sportiksclub.util.Role;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
