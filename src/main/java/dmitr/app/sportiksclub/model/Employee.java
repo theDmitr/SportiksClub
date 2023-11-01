@@ -18,7 +18,7 @@ public class Employee {
     private Post post;
 
     @DatabaseField(canBeNull = false)
-    private Date experience;
+    private int experience;
 
     public Employee() {
     }
@@ -40,7 +40,7 @@ public class Employee {
         return post;
     }
 
-    public Date getExperience() {
+    public int getExperience() {
         return experience;
     }
 

@@ -6,6 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import dmitr.app.sportiksclub.model.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -92,6 +93,18 @@ public class DatabaseHelper {
 
     public static User getAuthorizedUser() {
         return authorizedUser;
+    }
+
+    public static List<MembershipType> getMembershipTypes() {
+        List<MembershipType> membershipTypes = new ArrayList<>();
+
+        try {
+            membershipTypes = membershipTypeDao.queryForAll();
+        } catch (SQLException ignored) {
+
+        }
+
+        return membershipTypes;
     }
 
 }

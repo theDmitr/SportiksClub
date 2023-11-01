@@ -34,8 +34,7 @@
         </padding>
     </BorderPane>
     <VBox alignment="CENTER" prefHeight="200.0" spacing="10.0">
-        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="Абонементы" />
-        <Button layoutY="71.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="Тренеры" />
-        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="О нас" />
+        <Button fx:id="membershipTypesButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="Абонементы" />
+        <Button fx:id="aboutButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="О нас" />
     </VBox>
 </SplitPane>

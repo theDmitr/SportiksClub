@@ -19,6 +19,12 @@ public class GuestMenuController implements Initializable {
     @FXML
     private ImageView logoutImage;
 
+    @FXML
+    private Button membershipTypesButton;
+
+    @FXML
+    private Button aboutButton;
+
     private void logout() {
         SceneController.setScene(Scene.AUTH);
     }
@@ -28,6 +34,20 @@ public class GuestMenuController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 logout();
+            }
+        });
+
+        membershipTypesButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SceneController.setScene(Scene.MEMBERSHIPS);
+            }
+        });
+
+        aboutButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SceneController.setScene(Scene.ABOUT);
             }
         });
     }

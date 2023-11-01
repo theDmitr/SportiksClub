@@ -15,7 +15,7 @@ public class MembershipType {
     private String name;
 
     @DatabaseField(canBeNull = false)
-    private Date duration;
+    private int duration;
 
     @DatabaseField(canBeNull = false)
     private boolean hasTrainer;
@@ -23,7 +23,7 @@ public class MembershipType {
     public MembershipType() {
     }
 
-    public MembershipType(String name, Date duration, boolean hasTrainer) {
+    public MembershipType(String name, int duration, boolean hasTrainer) {
         this.name = name;
         this.duration = duration;
         this.hasTrainer = hasTrainer;
@@ -37,7 +37,7 @@ public class MembershipType {
         return name;
     }
 
-    public Date getDuration() {
+    public int getDuration() {
         return duration;
     }
 
