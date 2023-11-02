@@ -5,9 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity"
            minWidth="-Infinity" orientation="VERTICAL" stylesheets="@../css/style.css"
-           xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="dmitr.app.sportiksclub.controller.GuestMenuController">
+           xmlns="http://javafx.com/javafx/17.0.2-ea"
+           fx:controller="dmitr.app.sportiksclub.controller.GuestMenuController">
     <BorderPane maxHeight="80.0">
         <left>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="260.0" BorderPane.alignment="CENTER">

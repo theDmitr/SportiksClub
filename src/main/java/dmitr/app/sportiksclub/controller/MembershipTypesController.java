@@ -2,7 +2,6 @@ package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.MembershipType;
-import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
@@ -19,13 +18,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -80,7 +75,7 @@ public class MembershipTypesController implements Initializable {
         ObservableList<MembershipTypeItem> items = membershipTypesTableView.getItems();
 
         String[][] fields = new String[items.size() + 1][3];
-        fields[0] = new String[] { "Абонемент", "Длительность (дни)", "Наличие тренера" };
+        fields[0] = new String[]{"Абонемент", "Длительность (дни)", "Наличие тренера"};
 
         for (int i = 1; i <= items.size(); i++) {
             fields[i][0] = items.get(i - 1).getName();

@@ -2,7 +2,6 @@ package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Membership;
-import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
@@ -19,7 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -60,7 +58,7 @@ public class MembershipsController implements Initializable {
         ObservableList<MembershipItem> items = membershipsTableView.getItems();
 
         String[][] fields = new String[items.size() + 1][3];
-        fields[0] = new String[] { "Абонемент", "Действителен до", "Наличие тренера" };
+        fields[0] = new String[]{"Абонемент", "Действителен до", "Наличие тренера"};
 
         for (int i = 1; i <= items.size(); i++) {
             fields[i][0] = items.get(i - 1).getName();

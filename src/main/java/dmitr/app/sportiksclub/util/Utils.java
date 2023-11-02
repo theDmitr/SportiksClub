@@ -1,8 +1,5 @@
 package dmitr.app.sportiksclub.util;
 
-import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.Person;
-import dmitr.app.sportiksclub.scene.SceneController;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.HSSFRow;
