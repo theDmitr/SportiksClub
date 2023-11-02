@@ -2,9 +2,11 @@ package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.MembershipType;
+import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
+import dmitr.app.sportiksclub.util.Utils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +19,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,6 +50,9 @@ public class MembershipTypesController implements Initializable {
     @FXML
     private Button updateButton;
 
+    @FXML
+    private Button exportButton;
+
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
 
@@ -57,6 +68,29 @@ public class MembershipTypesController implements Initializable {
         }
     }
 
+    private void exportTable() {
+        Stage stage = SceneController.getStage();
+        File file = Utils.getFileByChooser(stage, "Сохранить таблицу как...", Utils.excelExtensionfilter);
+
+        if (file == null)
+            return;
+
+        String fileName = file.getAbsolutePath();
+
+        ObservableList<MembershipTypeItem> items = membershipTypesTableView.getItems();
+
+        String[][] fields = new String[items.size() + 1][3];
+        fields[0] = new String[] { "Абонемент", "Длительность (дни)", "Наличие тренера" };
+
+        for (int i = 1; i <= items.size(); i++) {
+            fields[i][0] = items.get(i - 1).getName();
+            fields[i][1] = items.get(i - 1).getDuration();
+            fields[i][2] = items.get(i - 1).getHasTrainer();
+        }
+
+        Utils.writeTable(fileName, "Абонементы", fields);
+    }
+
     private void applyActions() {
         menuImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -69,6 +103,13 @@ public class MembershipTypesController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 updateTableItems();
+            }
+        });
+
+        exportButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                exportTable();
             }
         });
     }

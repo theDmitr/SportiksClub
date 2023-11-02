@@ -29,4 +29,8 @@ public class SceneController {
         SceneController.stage.show();
     }
 
+    public static Stage getStage() {
+        return stage;
+    }
+
 }

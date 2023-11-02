@@ -2,9 +2,11 @@ package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Membership;
+import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
+import dmitr.app.sportiksclub.util.Utils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +19,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,6 +47,30 @@ public class MembershipsController implements Initializable {
     @FXML
     private Button updateButton;
 
+    @FXML
+    private Button exportButton;
+
+    private void exportTable() {
+        Stage stage = SceneController.getStage();
+        File file = Utils.getFileByChooser(stage, "Сохранить таблицу как...", Utils.excelExtensionfilter);
+
+        if (file == null)
+            return;
+
+        ObservableList<MembershipItem> items = membershipsTableView.getItems();
+
+        String[][] fields = new String[items.size() + 1][3];
+        fields[0] = new String[] { "Абонемент", "Действителен до", "Наличие тренера" };
+
+        for (int i = 1; i <= items.size(); i++) {
+            fields[i][0] = items.get(i - 1).getName();
+            fields[i][1] = items.get(i - 1).getEndDate();
+            fields[i][2] = items.get(i - 1).getHasTrainer();
+        }
+
+        Utils.writeTable(file.getAbsolutePath(), "Абонементы", fields);
+    }
+
     private void applyActions() {
         menuImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -54,6 +83,13 @@ public class MembershipsController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 updateTableItems();
+            }
+        });
+
+        exportButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                exportTable();
             }
         });
     }

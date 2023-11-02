@@ -96,6 +96,19 @@ public class DatabaseHelper {
         return authorizedUser;
     }
 
+    public static Person getAuthorizedUserPerson() {
+        Person person;
+        User user = getAuthorizedUser();
+
+        try {
+            person = personDao.queryForEq("user_id", user.getId()).get(0);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return person;
+    }
+
     public static List<MembershipType> getMembershipTypes() {
         List<MembershipType> membershipTypes = new ArrayList<>();
 
