@@ -38,7 +38,7 @@ public class SportiksClub extends Application {
         User user = new User("mana", "", Role.CUSTOMER);
         Customer customer = new Customer(user);
         MembershipType membershipType = new MembershipType("Топ абоник", 28, true);
-        Membership membership = new Membership(customer, membershipType, new Date(6363), new Date(3463456), 0.15f);
+        Membership membership = new Membership(customer, membershipType, new Date(2023 - 1900, 11 - 1, 2), 0.15f);
 
         DatabaseHelper.getUserDao().create(user);
         DatabaseHelper.getCustomerDao().create(customer);

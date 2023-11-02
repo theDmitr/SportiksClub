@@ -2,6 +2,7 @@ package dmitr.app.sportiksclub.model;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import dmitr.app.sportiksclub.util.Utils;
 
 import java.sql.Date;
 
@@ -33,11 +34,11 @@ public class Membership {
     }
 
     public Membership(Customer customer, MembershipType membershipType,
-                      Date beginDate, Date endDate, float discount) {
+                      Date beginDate, float discount) {
         this.customer = customer;
         this.membershipType = membershipType;
         this.beginDate = beginDate;
-        this.endDate = endDate;
+        this.endDate = Utils.addDaysToDate(beginDate, membershipType.getDuration());
         this.discount = discount;
     }
 
