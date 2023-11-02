@@ -27,6 +27,9 @@ public class CustomerMenuController implements Initializable {
     @FXML
     private Button membershipTypesButton;
 
+    @FXML
+    private Button membershipsButton;
+
     private void logout() {
         DatabaseHelper.logoutUser();
         SceneController.setScene(Scene.AUTH);
@@ -44,6 +47,13 @@ public class CustomerMenuController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 SceneController.setScene(Scene.MEMBERSHIP_TYPES);
+            }
+        });
+
+        membershipsButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SceneController.setScene(Scene.MEMBERSHIPS);
             }
         });
     }

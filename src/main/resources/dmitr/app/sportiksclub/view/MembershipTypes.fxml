@@ -31,7 +31,7 @@
     </BorderPane>
    <BorderPane>
       <center>
-           <TableView fx:id="membershipsTable" BorderPane.alignment="CENTER">
+           <TableView fx:id="membershipTypesTableView" BorderPane.alignment="CENTER">
                <columns>
                    <TableColumn fx:id="nameTableColumn" minWidth="0.0" prefWidth="270.0" text="Абонемент" />
                    <TableColumn fx:id="durationTableColumn" minWidth="0.0" prefWidth="189.0" text="Длительность (дни)" />
@@ -48,7 +48,7 @@
                <Button layoutX="10.0" layoutY="161.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Выгрузить" />
             </children>
             <padding>
-               <Insets right="10.0" />
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
          </VBox>
       </right>

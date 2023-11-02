@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import dmitr.app.sportiksclub.model.*;
+import dmitr.app.sportiksclub.util.Role;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -105,6 +106,47 @@ public class DatabaseHelper {
         }
 
         return membershipTypes;
+    }
+
+    public static List<Membership> getMemberships() {
+        List<Membership> memberships = new ArrayList<>();
+
+        try {
+            memberships = membershipDao.queryForAll();
+        } catch (SQLException ignored) {
+
+        }
+
+        return memberships;
+    }
+
+    public static List<Membership> getMemberships(Customer customer) {
+        List<Membership> memberships = new ArrayList<>();
+
+        try {
+            memberships = membershipDao.queryForEq("customer_id", customer.getId());
+        } catch (SQLException ignored) {
+
+        }
+
+        return memberships;
+    }
+
+    public static List<Membership> getMemberships(User user) {
+        if (user.getRole() != Role.CUSTOMER)
+            throw new RuntimeException("User isn`t customer!");
+
+        List<Membership> memberships = new ArrayList<>();
+
+        try {
+            List<Customer> customers = customerDao.queryForEq("user_id", user.getId());
+            Customer customer = customers.get(0);
+            memberships = getMemberships(customer);
+        } catch (SQLException ignored) {
+
+        }
+
+        return memberships;
     }
 
 }

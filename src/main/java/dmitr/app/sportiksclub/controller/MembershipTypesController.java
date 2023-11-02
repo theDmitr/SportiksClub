@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -27,7 +26,7 @@ public class MembershipTypesController implements Initializable {
     private ImageView menuImage;
 
     @FXML
-    private TableView<MembershipTypeItem> membershipsTable;
+    private TableView<MembershipTypeItem> membershipTypesTableView;
 
     @FXML
     private TableColumn<MembershipTypeItem, String> nameTableColumn;
@@ -67,7 +66,7 @@ public class MembershipTypesController implements Initializable {
         applyActions();
 
         nameTableColumn.setCellValueFactory(d -> new ReadOnlyStringWrapper(d.getValue().getName()));
-        durationTableColumn.setCellValueFactory(d -> new ReadOnlyStringWrapper(d.getValue().getDate()));
+        durationTableColumn.setCellValueFactory(d -> new ReadOnlyStringWrapper(d.getValue().getDuration()));
         hasTrainerTableColumn.setCellValueFactory(d -> new ReadOnlyStringWrapper(d.getValue().getHasTrainer()));
 
         updateTableItems();
@@ -77,28 +76,29 @@ public class MembershipTypesController implements Initializable {
         List<MembershipTypeItem> membershipTypeItems =
                 DatabaseHelper.getMembershipTypes().stream().map(MembershipTypeItem::new).toList();
         ObservableList<MembershipTypeItem> data = FXCollections.observableArrayList(membershipTypeItems);
-        membershipsTable.setItems(data);
+        membershipTypesTableView.setItems(data);
     }
 
     public static class MembershipTypeItem {
 
         private String name;
-        private String date;
+        private String duration;
         private String hasTrainer;
         private MembershipType membershipType;
 
         public MembershipTypeItem(MembershipType membershipType) {
             name = membershipType.getName();
-            date = Integer.toString(membershipType.getDuration());
+            duration = Integer.toString(membershipType.getDuration());
             hasTrainer = membershipType.hasTrainer() ? "Да" : "Нет";
+            this.membershipType = membershipType;
         }
 
         public String getName() {
             return name;
         }
 
-        public String getDate() {
-            return date;
+        public String getDuration() {
+            return duration;
         }
 
         public String getHasTrainer() {
