@@ -1,6 +1,5 @@
 package dmitr.app.sportiksclub.controller;
 
-import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
 import javafx.event.ActionEvent;
@@ -40,7 +39,7 @@ public class GuestMenuController implements Initializable {
         membershipTypesButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.MEMBERSHIPS);
+                SceneController.setScene(Scene.MEMBERSHIP_TYPES);
             }
         });
 
