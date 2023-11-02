@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmitr.app.sportiksclub.controller.AboutController">
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+           minWidth="-Infinity" orientation="VERTICAL" stylesheets="@../css/style.css"
+           xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="dmitr.app.sportiksclub.controller.AboutController">
     <BorderPane maxHeight="80.0">
         <left>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="260.0" BorderPane.alignment="CENTER">
                 <ImageView fitHeight="50.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../image/fitness.png" />
+                    <Image url="@../image/fitness.png"/>
                 </ImageView>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="222.0" text="Фитнес-клуб &quot;Спортикс&quot;" textAlignment="CENTER" />
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="222.0" text="Фитнес-клуб &quot;Спортикс&quot;"
+                       textAlignment="CENTER"/>
             </HBox>
         </left>
         <right>
-            <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="260.0" BorderPane.alignment="CENTER_RIGHT">
-                <ImageView fx:id="menuImage" fitHeight="28.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="260.0"
+                  BorderPane.alignment="CENTER_RIGHT">
+                <ImageView fx:id="menuImage" fitHeight="28.0" pickOnBounds="true" preserveRatio="true"
+                           GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                     <GridPane.margin>
-                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" right="10.0" top="10.0"/>
                     </GridPane.margin>
-                    <Image url="@../image/home.png" />
+                    <Image url="@../image/home.png"/>
                 </ImageView>
             </HBox>
         </right>
         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </padding>
     </BorderPane>
-   <VBox alignment="CENTER" prefHeight="200.0">
-      <children>
-         <Label prefHeight="132.0" prefWidth="407.0" text="Компания &quot;Спортикс&quot; предоставляет своим пользователям различные абонементы в спортивный зал, включая занятия с профессиональными инструкторами." textAlignment="CENTER" wrapText="true" />
-      </children>
-   </VBox>
+    <VBox alignment="CENTER" prefHeight="200.0">
+        <children>
+            <Label prefHeight="132.0" prefWidth="407.0"
+                   text="Компания &quot;Спортикс&quot; предоставляет своим пользователям различные абонементы в спортивный зал, включая занятия с профессиональными инструкторами."
+                   textAlignment="CENTER" wrapText="true"/>
+        </children>
+    </VBox>
 </SplitPane>

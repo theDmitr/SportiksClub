@@ -21,6 +21,10 @@ public enum SportiksAlertType {
         this.icon = new Image(iconStream);
     }
 
+    public static Stage getStageFromAlert(Alert alert) {
+        return (Stage) alert.getDialogPane().getScene().getWindow();
+    }
+
     public Alert getAlert(String caption, String header, String content) {
         Alert alert = new Alert(alertType);
 
@@ -31,10 +35,6 @@ public enum SportiksAlertType {
         alert.setContentText(content);
 
         return alert;
-    }
-
-    public static Stage getStageFromAlert(Alert alert) {
-        return (Stage) alert.getDialogPane().getScene().getWindow();
     }
 
 }

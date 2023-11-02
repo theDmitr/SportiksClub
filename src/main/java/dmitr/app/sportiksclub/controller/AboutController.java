@@ -1,6 +1,5 @@
 package dmitr.app.sportiksclub.controller;
 
-import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
 import javafx.event.EventHandler;

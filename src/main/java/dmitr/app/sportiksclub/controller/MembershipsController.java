@@ -1,7 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.Customer;
 import dmitr.app.sportiksclub.model.Membership;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
@@ -20,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 

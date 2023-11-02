@@ -1,6 +1,5 @@
 package dmitr.app.sportiksclub;
 
-import dmitr.app.sportiksclub.database.Database;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Customer;
 import dmitr.app.sportiksclub.model.Membership;
@@ -23,17 +22,6 @@ public class SportiksClub extends Application {
         launch();
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        stage.getIcons().add(
-                new Image(Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/dumbbell.png")))
-        );
-        SceneController.init(stage);
-        SceneController.setScene(Scene.AUTH);
-
-        fill();
-    }
-
     private static void fill() throws SQLException {
         User user = new User("mana", "", Role.CUSTOMER);
         Customer customer = new Customer(user);
@@ -44,6 +32,17 @@ public class SportiksClub extends Application {
         DatabaseHelper.getCustomerDao().create(customer);
         DatabaseHelper.getMembershipTypeDao().create(membershipType);
         DatabaseHelper.getMembershipDao().create(membership);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        stage.getIcons().add(
+                new Image(Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/dumbbell.png")))
+        );
+        SceneController.init(stage);
+        SceneController.setScene(Scene.AUTH);
+
+        fill();
     }
 
 }
