@@ -25,7 +25,13 @@ public class EmployeeMenuController implements Initializable {
     private ImageView logoutImage;
 
     @FXML
+    private Button customersButton;
+
+    @FXML
     private Button membershipTypesButton;
+
+    @FXML
+    private Button membershipsButton;
 
     private void logout() {
         DatabaseHelper.logoutUser();
@@ -40,10 +46,24 @@ public class EmployeeMenuController implements Initializable {
             }
         });
 
+        customersButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SceneController.setScene(Scene.CUSTOMERS);
+            }
+        });
+
         membershipTypesButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 SceneController.setScene(Scene.MEMBERSHIP_TYPES);
+            }
+        });
+
+        membershipsButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SceneController.setScene(Scene.MEMBERSHIPS_ALL);
             }
         });
     }

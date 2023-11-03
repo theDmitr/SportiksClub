@@ -91,8 +91,12 @@ public class DatabaseHelper {
     }
 
     public static Person getAuthorizedUserPerson() {
-        Person person;
         User user = getAuthorizedUser();
+        return getUserPerson(user);
+    }
+
+    public static Person getUserPerson(User user) {
+        Person person;
 
         try {
             person = personDao.queryForEq("user_id", user.getId()).get(0);
@@ -154,6 +158,18 @@ public class DatabaseHelper {
         }
 
         return memberships;
+    }
+
+    public static List<Customer> getCustomers() {
+        List<Customer> customers = new ArrayList<>();
+
+        try {
+            customers = customerDao.queryForAll();
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        return customers;
     }
 
 }

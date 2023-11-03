@@ -10,15 +10,12 @@ import dmitr.app.sportiksclub.util.FileUtils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -71,26 +68,9 @@ public class MembershipsController implements Initializable {
     }
 
     private void applyActions() {
-        menuImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                SceneController.setScene(Scene.CUSTOMER_MENU);
-            }
-        });
-
-        updateButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                updateTableItems();
-            }
-        });
-
-        exportButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                exportTable();
-            }
-        });
+        menuImage.setOnMouseClicked(mouseEvent -> SceneController.setScene(Scene.CUSTOMER_MENU));
+        updateButton.setOnAction(actionEvent -> updateTableItems());
+        exportButton.setOnAction(actionEvent -> exportTable());
     }
 
     @Override

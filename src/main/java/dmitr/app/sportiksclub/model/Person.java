@@ -16,7 +16,7 @@ public class Person {
     private String name;
 
     @DatabaseField(canBeNull = false)
-    private String lastname;
+    private String surname;
 
     @DatabaseField
     private String patronymic;
@@ -27,10 +27,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(User user, String name, String lastname, String patronymic, boolean sex) {
+    public Person(User user, String name, String surname, String patronymic, boolean sex) {
         this.user = user;
         this.name = name;
-        this.lastname = lastname;
+        this.surname = surname;
         this.patronymic = patronymic;
         this.sex = sex;
     }
@@ -47,8 +47,8 @@ public class Person {
         return name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getSurname() {
+        return surname;
     }
 
     public String getPatronymic() {

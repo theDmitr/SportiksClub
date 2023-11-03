@@ -5,9 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity"
            minWidth="-Infinity" orientation="VERTICAL" stylesheets="@../css/style.css"
-           xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="dmitr.app.sportiksclub.controller.EmployeeMenuController">
+           xmlns="http://javafx.com/javafx/17.0.2-ea"
+           fx:controller="dmitr.app.sportiksclub.controller.EmployeeMenuController">
     <BorderPane maxHeight="80.0">
         <left>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="260.0" BorderPane.alignment="CENTER">
@@ -41,10 +43,11 @@
         </padding>
     </BorderPane>
     <VBox alignment="CENTER" prefHeight="250.0" spacing="10.0">
-        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" text="Клиенты"/>
+        <Button fx:id="customersButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" text="Клиенты"/>
         <Button fx:id="membershipTypesButton" layoutX="101.0" layoutY="100.0" mnemonicParsing="false" prefHeight="40.0"
                 prefWidth="220.0" text="Абонементы"/>
-        <Button layoutX="101.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0"
+        <Button fx:id="membershipsButton" layoutX="101.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0"
+                prefWidth="220.0"
                 text="Абонементы (Клиенты)"/>
     </VBox>
 </SplitPane>
