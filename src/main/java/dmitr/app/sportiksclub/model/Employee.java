@@ -12,18 +12,14 @@ public class Employee {
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
     private User user;
 
-    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
-    private Post post;
-
     @DatabaseField(canBeNull = false)
     private int experience;
 
     public Employee() {
     }
 
-    public Employee(User user, Post post) {
+    public Employee(User user) {
         this.user = user;
-        this.post = post;
     }
 
     public int getId() {
@@ -32,10 +28,6 @@ public class Employee {
 
     public User getUser() {
         return user;
-    }
-
-    public Post getPost() {
-        return post;
     }
 
     public int getExperience() {

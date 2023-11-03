@@ -4,7 +4,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import dmitr.app.sportiksclub.model.*;
-import dmitr.app.sportiksclub.util.Utils;
+import dmitr.app.sportiksclub.util.DatabaseUtils;
 
 import java.sql.SQLException;
 
@@ -24,7 +24,7 @@ public class Database {
 
     private Database() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
-        String path = Utils.getDatabasePath();
+        String path = DatabaseUtils.getDatabasePath();
         connectionSource = new JdbcConnectionSource(path);
         setupDatabase();
     }
@@ -35,7 +35,6 @@ public class Database {
 
     private void setupDatabase() throws SQLException {
         TableUtils.createTableIfNotExists(connectionSource, User.class);
-        TableUtils.createTableIfNotExists(connectionSource, Post.class);
         TableUtils.createTableIfNotExists(connectionSource, Person.class);
         TableUtils.createTableIfNotExists(connectionSource, MembershipType.class);
         TableUtils.createTableIfNotExists(connectionSource, Membership.class);

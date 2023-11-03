@@ -24,11 +24,18 @@ public class SportiksClub extends Application {
         Person person = new Person(user, "Dmitr", "Levakov", "Stanislavovich", true);
         Customer customer = new Customer(user);
         MembershipType membershipType = new MembershipType("Топ абоник", 28, true);
-        Membership membership = new Membership(customer, membershipType, new Date(2023 - 1900, 11 - 1, 2), 0.15f);
+        Membership membership = new Membership(customer, membershipType, new Date(2023 - 1900, 11 - 1, 2), 0.15);
+
+        User user2 = new User("asd", "", Role.EMPLOYEE);
+        Person person2 = new Person(user2, "Andrey", "Lox", "SHISHKA", true);
+        Employee employee = new Employee(user2);
 
         DatabaseHelper.getUserDao().create(user);
+        DatabaseHelper.getUserDao().create(user2);
         DatabaseHelper.getPersonDao().create(person);
+        DatabaseHelper.getPersonDao().create(person2);
         DatabaseHelper.getCustomerDao().create(customer);
+        DatabaseHelper.getEmployeeDao().create(employee);
         DatabaseHelper.getMembershipTypeDao().create(membershipType);
         DatabaseHelper.getMembershipDao().create(membership);
     }

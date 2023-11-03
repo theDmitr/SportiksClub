@@ -5,7 +5,8 @@ import dmitr.app.sportiksclub.model.MembershipType;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
-import dmitr.app.sportiksclub.util.Utils;
+import dmitr.app.sportiksclub.util.ExcelWorkbookUtils;
+import dmitr.app.sportiksclub.util.FileUtils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,7 +66,8 @@ public class MembershipTypesController implements Initializable {
 
     private void exportTable() {
         Stage stage = SceneController.getStage();
-        File file = Utils.getFileByChooser(stage, "Сохранить таблицу как...", Utils.excelExtensionfilter);
+        File file = FileUtils.getFileByChooser(stage,
+                "Сохранить таблицу как...", FileUtils.excelExtensionfilter);
 
         if (file == null)
             return;
@@ -83,7 +85,7 @@ public class MembershipTypesController implements Initializable {
             fields[i][2] = items.get(i - 1).getHasTrainer();
         }
 
-        Utils.writeTable(fileName, "Абонементы", fields);
+        ExcelWorkbookUtils.writeTable(fileName, "Абонементы", fields);
     }
 
     private void applyActions() {
