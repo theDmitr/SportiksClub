@@ -95,11 +95,12 @@ public class AllMembershipsController implements Initializable {
 
     private void generateQrCode() {
         Membership selected = membershipsTableView.getSelectionModel().getSelectedItem();
-        Person person = DatabaseHelper.getUserPerson(selected.getCustomer().getUser());
-        String initials = PersonUtils.getInitials(person);
 
         if (selected == null)
             return;
+
+        Person person = DatabaseHelper.getUserPerson(selected.getCustomer().getUser());
+        String initials = PersonUtils.getInitials(person);
 
         String data = String.format(
                 "Инициалы: %s\nДата (начало): %s\nДата(конец): %s\nНаличие тренера: %s\n",
