@@ -63,7 +63,7 @@ public class EmployeeMenuController implements Initializable {
         membershipsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.MEMBERSHIPS_ALL);
+                SceneController.setScene(Scene.ALL_MEMBERSHIPS);
             }
         });
     }

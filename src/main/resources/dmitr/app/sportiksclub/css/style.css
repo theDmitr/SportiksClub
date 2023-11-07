@@ -42,3 +42,10 @@
 .table-row-cell:selected .text {
     -fx-fill: #698aff;
 }
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #698aff;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}

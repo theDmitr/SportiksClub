@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="850.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="850.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmitr.app.sportiksclub.controller.MembershipTypesController">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="850.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="850.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dmitr.app.sportiksclub.controller.CustomerMembershipsController">
     <BorderPane maxHeight="80.0">
         <left>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="260.0" BorderPane.alignment="CENTER">
@@ -31,11 +31,11 @@
     </BorderPane>
     <BorderPane>
         <center>
-            <TableView fx:id="membershipTypesTableView" BorderPane.alignment="CENTER">
+            <TableView fx:id="membershipsTableView" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn fx:id="nameTableColumn" minWidth="0.0" prefWidth="270.0" text="Абонемент" />
-                    <TableColumn fx:id="durationTableColumn" minWidth="0.0" prefWidth="189.0" text="Длительность (дни)" />
-                    <TableColumn fx:id="hasTrainerTableColumn" minWidth="0.0" prefWidth="188.0" text="Тренер" />
+                    <TableColumn fx:id="nameTableColumn" minWidth="0.0" prefWidth="318.0" text="Абонемент" />
+                    <TableColumn fx:id="endDateTableColumn" minWidth="0.0" prefWidth="186.0" text="Дата окончания" />
+                    <TableColumn fx:id="hasTrainerTableColumn" minWidth="0.0" prefWidth="183.0" text="Тренер" />
                 </columns>
                 <columnResizePolicy>
                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -11,7 +11,8 @@ import java.util.Objects;
 public enum SportiksAlertType {
 
     INFORMATION(Alert.AlertType.INFORMATION, Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/information.png"))),
-    ERROR(Alert.AlertType.ERROR, Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/error.png")));
+    ERROR(Alert.AlertType.ERROR, Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/error.png"))),
+    QR(Alert.AlertType.INFORMATION, Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/qr-code.png")));
 
     private final Alert.AlertType alertType;
     private final Image icon;
@@ -25,14 +26,15 @@ public enum SportiksAlertType {
         return (Stage) alert.getDialogPane().getScene().getWindow();
     }
 
-    public Alert getAlert(String caption, String header, String content) {
+    public Alert getAlert(String caption, String content) {
         Alert alert = new Alert(alertType);
 
         getStageFromAlert(alert).getIcons().add(icon);
 
         alert.setTitle(caption);
-        alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
 
         return alert;
     }

@@ -53,7 +53,7 @@ public class CustomerMenuController implements Initializable {
         membershipsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.MEMBERSHIPS);
+                SceneController.setScene(Scene.CUSTOMER_MEMBERSHIPS);
             }
         });
     }

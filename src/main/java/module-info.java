@@ -8,6 +8,10 @@ module dmitr.app.sportiksclub {
 
     requires org.apache.poi.poi;
 
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires java.desktop;
+
     opens dmitr.app.sportiksclub to javafx.fxml;
     opens dmitr.app.sportiksclub.controller to javafx.fxml;
     opens dmitr.app.sportiksclub.model to ormlite.jdbc;

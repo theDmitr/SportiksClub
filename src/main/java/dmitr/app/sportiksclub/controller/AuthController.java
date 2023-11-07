@@ -34,14 +34,13 @@ public class AuthController implements Initializable {
         boolean success = DatabaseHelper.authUser(login, password);
 
         if (!success) {
-            SportiksAlertType.ERROR.getAlert("Авторизация | Ошибка",
-                    "Произошла ошибка!", "Неверный логин или пароль!"
-            ).showAndWait();
+            SportiksAlertType.ERROR.getAlert("Произошла ошибка!", "Неверный логин или пароль!")
+                    .showAndWait();
             return;
         }
 
-        SportiksAlertType.INFORMATION.getAlert("Авторизация | Информация",
-                "Успешная авторизация!", "Вы авторизованы!").showAndWait();
+        SportiksAlertType.INFORMATION.getAlert("Успешная авторизация!", "Вы авторизованы!")
+                .showAndWait();
 
         User user = DatabaseHelper.getAuthorizedUser();
 

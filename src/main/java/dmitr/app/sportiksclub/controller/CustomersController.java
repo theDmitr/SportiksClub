@@ -2,20 +2,19 @@ package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Customer;
+import dmitr.app.sportiksclub.model.MembershipType;
 import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
-import dmitr.app.sportiksclub.util.ExcelWorkbookUtils;
-import dmitr.app.sportiksclub.util.FileUtils;
+import dmitr.app.sportiksclub.util.*;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -49,6 +48,9 @@ public class CustomersController implements Initializable {
 
     @FXML
     private Button exportButton;
+
+    @FXML
+    private MenuItem contextMenuQrItem;
 
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
@@ -90,10 +92,31 @@ public class CustomersController implements Initializable {
         ExcelWorkbookUtils.writeTable(fileName, "Абонементы", fields);
     }
 
+    private void generateQrCode() {
+        Customer selected = customersTableView.getSelectionModel().getSelectedItem();
+        Person person = DatabaseHelper.getUserPerson(selected.getUser());
+
+        if (selected == null)
+            return;
+
+        String data = String.format(
+                "Имя: %s\nФамилия: %s\nОтчество: %s\nПол: %s\n",
+                person.getName(), person.getSurname(), person.getPatronymic(),
+                person.getSex() ? "Мужской" : "Женский"
+        );
+
+        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null);
+        Image image = BarcodeUtils.generateQrCodeImage(data);
+        ImageView imageView = new ImageView(image);
+        alert.setGraphic(imageView);
+        alert.showAndWait();
+    }
+
     private void applyActions() {
         menuImage.setOnMouseClicked(mouseEvent -> goToMenu());
         updateButton.setOnAction(actionEvent -> updateTableItems());
         exportButton.setOnAction(actionEvent -> exportTable());
+        contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
     }
 
     @Override
