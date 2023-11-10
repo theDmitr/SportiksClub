@@ -172,4 +172,27 @@ public class DatabaseHelper {
         return customers;
     }
 
+    public static void removeMembership(Membership membership) {
+        try {
+            membershipDao.delete(membership);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static void removeCustomer(Customer customer) {
+        try {
+            List<Membership> memberships = membershipDao.queryForEq("customer_id", customer.getId());
+            membershipDao.delete(memberships);
+
+            User user = customer.getUser();
+
+            customerDao.delete(customer);
+            personDao.delete(getUserPerson(user));
+            userDao.delete(user);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
 }

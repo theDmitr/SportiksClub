@@ -40,13 +40,13 @@ public class MembershipTypesController implements Initializable {
     private TableColumn<MembershipType, String> hasTrainerTableColumn;
 
     @FXML
-    private Button updateButton;
-
-    @FXML
-    private Button exportButton;
-
-    @FXML
     private MenuItem contextMenuQrItem;
+
+    @FXML
+    private MenuItem updateTableItem;
+
+    @FXML
+    private MenuItem exportTableItem;
 
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
@@ -90,8 +90,12 @@ public class MembershipTypesController implements Initializable {
     private void generateQrCode() {
         MembershipType selected = membershipTypesTableView.getSelectionModel().getSelectedItem();
 
-        if (selected == null)
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+            ).showAndWait();
             return;
+        }
 
         String data = String.format(
                 "Абонемент: %s\nДлительность (дни): %s\nНаличие тренера: %s\n",
@@ -107,8 +111,8 @@ public class MembershipTypesController implements Initializable {
 
     private void applyActions() {
         menuImage.setOnMouseClicked(mouseEvent -> goToMenu());
-        updateButton.setOnAction(actionEvent -> updateTableItems());
-        exportButton.setOnAction(actionEvent -> exportTable());
+        updateTableItem.setOnAction(actionEvent -> updateTableItems());
+        exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
     }
 

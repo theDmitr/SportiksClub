@@ -1,7 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.Customer;
 import dmitr.app.sportiksclub.model.Membership;
 import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
@@ -29,12 +28,6 @@ public class AllMembershipsController implements Initializable {
     private ImageView menuImage;
 
     @FXML
-    private Button updateButton;
-
-    @FXML
-    private Button exportButton;
-
-    @FXML
     private TableView<Membership> membershipsTableView;
 
     @FXML
@@ -54,6 +47,15 @@ public class AllMembershipsController implements Initializable {
 
     @FXML
     private MenuItem contextMenuQrItem;
+
+    @FXML
+    private MenuItem removeMembershipItem;
+
+    @FXML
+    private MenuItem updateTableItem;
+
+    @FXML
+    private MenuItem exportTableItem;
 
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
@@ -96,8 +98,12 @@ public class AllMembershipsController implements Initializable {
     private void generateQrCode() {
         Membership selected = membershipsTableView.getSelectionModel().getSelectedItem();
 
-        if (selected == null)
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+            ).showAndWait();
             return;
+        }
 
         Person person = DatabaseHelper.getUserPerson(selected.getCustomer().getUser());
         String initials = PersonUtils.getInitials(person);
@@ -115,11 +121,26 @@ public class AllMembershipsController implements Initializable {
         alert.showAndWait();
     }
 
+    private void removeMembership() {
+        Membership selected = membershipsTableView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для удаления абонемента выберите элемент из таблицы!"
+            ).showAndWait();
+            return;
+        }
+
+        DatabaseHelper.removeMembership(selected);
+        membershipsTableView.getItems().remove(selected);
+    }
+
     private void applyActions() {
         menuImage.setOnMouseClicked(mouseEvent -> goToMenu());
-        updateButton.setOnAction(actionEvent -> updateTableItems());
-        exportButton.setOnAction(actionEvent -> exportTable());
+        updateTableItem.setOnAction(actionEvent -> updateTableItems());
+        exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
+        removeMembershipItem.setOnAction(actionEvent -> removeMembership());
     }
 
     @Override

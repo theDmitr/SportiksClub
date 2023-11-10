@@ -1,5 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
+import dmitr.app.sportiksclub.database.Database;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Customer;
 import dmitr.app.sportiksclub.model.MembershipType;
@@ -44,13 +45,19 @@ public class CustomersController implements Initializable {
     private TableColumn<Customer, String> sexTableColumn;
 
     @FXML
-    private Button updateButton;
-
-    @FXML
-    private Button exportButton;
-
-    @FXML
     private MenuItem contextMenuQrItem;
+
+    @FXML
+    private MenuItem updateTableItem;
+
+    @FXML
+    private MenuItem exportTableItem;
+
+    @FXML
+    private MenuItem editCustomerItem;
+
+    @FXML
+    private MenuItem removeCustomerItem;
 
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
@@ -94,10 +101,15 @@ public class CustomersController implements Initializable {
 
     private void generateQrCode() {
         Customer selected = customersTableView.getSelectionModel().getSelectedItem();
-        Person person = DatabaseHelper.getUserPerson(selected.getUser());
 
-        if (selected == null)
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+            ).showAndWait();
             return;
+        }
+
+        Person person = DatabaseHelper.getUserPerson(selected.getUser());
 
         String data = String.format(
                 "Имя: %s\nФамилия: %s\nОтчество: %s\nПол: %s\n",
@@ -112,11 +124,26 @@ public class CustomersController implements Initializable {
         alert.showAndWait();
     }
 
+    private void removeCustomer() {
+        Customer selected = customersTableView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для удаления Клиента выберите элемент из таблицы!"
+            ).showAndWait();
+            return;
+        }
+
+        DatabaseHelper.removeCustomer(selected);
+        customersTableView.getItems().remove(selected);
+    }
+
     private void applyActions() {
         menuImage.setOnMouseClicked(mouseEvent -> goToMenu());
-        updateButton.setOnAction(actionEvent -> updateTableItems());
-        exportButton.setOnAction(actionEvent -> exportTable());
+        updateTableItem.setOnAction(actionEvent -> updateTableItems());
+        exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
+        removeCustomerItem.setOnAction(actionEvent -> removeCustomer());
     }
 
     @Override

@@ -29,12 +29,6 @@ public class CustomerMembershipsController implements Initializable {
     private ImageView menuImage;
 
     @FXML
-    private Button updateButton;
-
-    @FXML
-    private Button exportButton;
-
-    @FXML
     private TableView<Membership> membershipsTableView;
 
     @FXML
@@ -48,6 +42,12 @@ public class CustomerMembershipsController implements Initializable {
 
     @FXML
     private MenuItem contextMenuQrItem;
+
+    @FXML
+    private MenuItem updateTableItem;
+
+    @FXML
+    private MenuItem exportTableItem;
 
     private void exportTable() {
         Stage stage = SceneController.getStage();
@@ -72,11 +72,16 @@ public class CustomerMembershipsController implements Initializable {
 
     private void generateQrCode() {
         Membership selected = membershipsTableView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+            ).showAndWait();
+            return;
+        }
+
         Person person = DatabaseHelper.getUserPerson(selected.getCustomer().getUser());
         String initials = PersonUtils.getInitials(person);
-
-        if (selected == null)
-            return;
 
         String data = String.format(
                 "Инициалы: %s\nДата (начало): %s\nДата(конец): %s\nНаличие тренера: %s\n",
@@ -93,8 +98,8 @@ public class CustomerMembershipsController implements Initializable {
 
     private void applyActions() {
         menuImage.setOnMouseClicked(mouseEvent -> SceneController.setScene(Scene.CUSTOMER_MENU));
-        updateButton.setOnAction(actionEvent -> updateTableItems());
-        exportButton.setOnAction(actionEvent -> exportTable());
+        updateTableItem.setOnAction(actionEvent -> updateTableItems());
+        exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
     }
 
