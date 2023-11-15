@@ -103,7 +103,7 @@ public class AllMembershipsController implements Initializable {
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!", null
             ).showAndWait();
             return;
         }
@@ -117,10 +117,9 @@ public class AllMembershipsController implements Initializable {
                 selected.getMembershipType().hasTrainer() ? "Да" : "Нет"
         );
 
-        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null);
         Image image = BarcodeUtils.generateQrCodeImage(data);
         ImageView imageView = new ImageView(image);
-        alert.setGraphic(imageView);
+        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null, imageView);
         alert.showAndWait();
     }
 
@@ -129,8 +128,14 @@ public class AllMembershipsController implements Initializable {
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для удаления абонемента выберите элемент из таблицы!"
+                    "Ошибка", "Для удаления абонемента выберите элемент из таблицы!", null
             ).showAndWait();
+            return;
+        }
+
+        if (SportiksAlertType.CONFIRMATION.getAlert("Подтверждение",
+                        "Вы уверены, что хотите удалить абонемент клиента?", null)
+                .showAndWait().get() == AlertButtonTypes.noButtonType) {
             return;
         }
 

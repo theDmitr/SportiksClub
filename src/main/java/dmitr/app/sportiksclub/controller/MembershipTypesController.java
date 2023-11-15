@@ -97,7 +97,7 @@ public class MembershipTypesController implements Initializable {
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!", null
             ).showAndWait();
             return;
         }
@@ -107,10 +107,9 @@ public class MembershipTypesController implements Initializable {
                 selected.getName(), selected.getDuration(), selected.hasTrainer() ? "Да" : "Нет"
         );
 
-        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null);
         Image image = BarcodeUtils.generateQrCodeImage(data);
         ImageView imageView = new ImageView(image);
-        alert.setGraphic(imageView);
+        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null, imageView);
         alert.showAndWait();
     }
 

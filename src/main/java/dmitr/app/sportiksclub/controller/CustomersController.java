@@ -1,15 +1,13 @@
 package dmitr.app.sportiksclub.controller;
 
+import dmitr.app.sportiksclub.SportiksClub;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Customer;
 import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
-import dmitr.app.sportiksclub.util.BarcodeUtils;
-import dmitr.app.sportiksclub.util.ExcelWorkbookUtils;
-import dmitr.app.sportiksclub.util.FileUtils;
-import dmitr.app.sportiksclub.util.SportiksAlertType;
+import dmitr.app.sportiksclub.util.*;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CustomersController implements Initializable {
@@ -108,7 +107,7 @@ public class CustomersController implements Initializable {
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!"
+                    "Ошибка", "Для генерации QR-кода выберите элемент из таблицы!", null
             ).showAndWait();
             return;
         }
@@ -121,10 +120,9 @@ public class CustomersController implements Initializable {
                 person.getSex() ? "Мужской" : "Женский"
         );
 
-        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null);
         Image image = BarcodeUtils.generateQrCodeImage(data);
         ImageView imageView = new ImageView(image);
-        alert.setGraphic(imageView);
+        Alert alert = SportiksAlertType.QR.getAlert("QR-код", null, imageView);
         alert.showAndWait();
     }
 
@@ -133,13 +131,37 @@ public class CustomersController implements Initializable {
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для удаления Клиента выберите элемент из таблицы!"
+                    "Ошибка", "Для удаления Клиента выберите элемент из таблицы!", null
             ).showAndWait();
             return;
         }
 
+        if (SportiksAlertType.CONFIRMATION.getAlert("Подтверждение",
+                        "Вы уверены, что хотите удалить аккаунт клиента?", null)
+                .showAndWait().get() == AlertButtonTypes.noButtonType)
+            return;
+
         DatabaseHelper.removeCustomer(selected);
         customersTableView.getItems().remove(selected);
+    }
+
+    private void editCustomer() {
+        Customer selected = customersTableView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            SportiksAlertType.ERROR.getAlert(
+                    "Ошибка", "Для редактирования Клиента выберите элемент из таблицы!", null
+            ).showAndWait();
+            return;
+        }
+
+        EditCustomerController.setEditableCustomer(selected);
+
+        SceneController.getStageByScene(Scene.EDIT_CUSTOMER,
+                        Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
+                ).showAndWait();
+
+        updateTableItems();
     }
 
     private void applyActions() {
@@ -148,6 +170,7 @@ public class CustomersController implements Initializable {
         exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
         removeCustomerItem.setOnAction(actionEvent -> removeCustomer());
+        editCustomerItem.setOnAction(actionEvent -> editCustomer());
     }
 
     @Override

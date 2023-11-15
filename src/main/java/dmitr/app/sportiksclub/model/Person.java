@@ -59,4 +59,20 @@ public class Person {
         return sex;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
 }

@@ -195,4 +195,12 @@ public class DatabaseHelper {
         }
     }
 
+    public static void updatePerson(Person person) {
+        try {
+            personDao.update(person);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
 }
