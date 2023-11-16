@@ -2,7 +2,6 @@ package dmitr.app.sportiksclub.util;
 
 import dmitr.app.sportiksclub.SportiksClub;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,18 +18,17 @@ public enum SportiksAlertType {
     CONFIRMATION(Alert.AlertType.CONFIRMATION, Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/confirm.png")), AlertButtonTypes.yesButtonType, AlertButtonTypes.noButtonType);
 
     private static final String DIALOG_STYLE = Objects.requireNonNull(SportiksClub.class.getResource("css/style.css")).toString();
-    public static Stage getStageFromAlert(Alert alert) {
-        return (Stage) alert.getDialogPane().getScene().getWindow();
-    }
-
     private final Alert.AlertType alertType;
     private final Image icon;
     private final ButtonType[] buttonTypes;
-
     SportiksAlertType(Alert.AlertType alertType, InputStream iconStream, ButtonType... buttonTypes) {
         this.alertType = alertType;
         this.icon = new Image(iconStream);
         this.buttonTypes = buttonTypes;
+    }
+
+    public static Stage getStageFromAlert(Alert alert) {
+        return (Stage) alert.getDialogPane().getScene().getWindow();
     }
 
     public Alert getAlert(String caption, String content, ImageView imageView) {

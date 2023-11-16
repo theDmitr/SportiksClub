@@ -62,6 +62,9 @@ public class CustomersController implements Initializable {
     @FXML
     private MenuItem removeCustomerItem;
 
+    @FXML
+    private MenuItem createCustomerItem;
+
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
 
@@ -158,8 +161,16 @@ public class CustomersController implements Initializable {
         EditCustomerController.setEditableCustomer(selected);
 
         SceneController.getStageByScene(Scene.EDIT_CUSTOMER,
-                        Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
-                ).showAndWait();
+                Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
+        ).showAndWait();
+
+        updateTableItems();
+    }
+
+    private void createCustomer() {
+        SceneController.getStageByScene(Scene.CREATE_CUSTOMER,
+                Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
+        ).showAndWait();
 
         updateTableItems();
     }
@@ -171,6 +182,7 @@ public class CustomersController implements Initializable {
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
         removeCustomerItem.setOnAction(actionEvent -> removeCustomer());
         editCustomerItem.setOnAction(actionEvent -> editCustomer());
+        createCustomerItem.setOnAction(actionEvent -> createCustomer());
     }
 
     @Override

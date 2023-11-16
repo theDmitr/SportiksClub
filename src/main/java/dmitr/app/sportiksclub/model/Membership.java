@@ -27,19 +27,14 @@ public class Membership {
     @DatabaseField(canBeNull = false)
     private Date endDate;
 
-    @DatabaseField(canBeNull = false)
-    private double discount;
-
     public Membership() {
     }
 
-    public Membership(Customer customer, MembershipType membershipType,
-                      Date beginDate, double discount) {
+    public Membership(Customer customer, MembershipType membershipType, Date beginDate) {
         this.customer = customer;
         this.membershipType = membershipType;
         this.beginDate = beginDate;
         this.endDate = DateUtils.addDaysToDate(beginDate, membershipType.getDuration());
-        this.discount = discount;
     }
 
     public int getId() {
@@ -64,10 +59,6 @@ public class Membership {
 
     public Date getEndDate() {
         return endDate;
-    }
-
-    public double getDiscount() {
-        return discount;
     }
 
 }

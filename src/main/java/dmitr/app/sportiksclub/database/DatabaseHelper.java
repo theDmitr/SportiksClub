@@ -6,6 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import dmitr.app.sportiksclub.model.*;
 import dmitr.app.sportiksclub.util.Role;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,6 +199,44 @@ public class DatabaseHelper {
     public static void updatePerson(Person person) {
         try {
             personDao.update(person);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static boolean isLoginUsed(String login) {
+        try {
+            List<User> users = userDao.queryForEq("login", login);
+
+            if (users.size() != 0)
+                return true;
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        return false;
+    }
+
+    public static void createCustomer(Role role, String login, String password, String name,
+                                      String surname, String patronymic, boolean sex) {
+        User user = new User(login, password, role);
+        Person person = new Person(user, name, surname, patronymic, sex);
+        Customer customer = new Customer(user);
+
+        try {
+            userDao.create(user);
+            personDao.create(person);
+            customerDao.create(customer);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static void createMembership(Customer customer, MembershipType membershipType, Date beginDate) {
+        Membership membership = new Membership(customer, membershipType, beginDate);
+
+        try {
+            membershipDao.create(membership);
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }

@@ -56,6 +56,8 @@
                             <MenuItem fx:id="contextMenuQrItem" text="QR-код"/>
                             <MenuItem fx:id="removeMembershipItem" text="Удалить"/>
                             <SeparatorMenuItem/>
+                            <MenuItem fx:id="createMembershipItem" text="Создать"/>
+                            <SeparatorMenuItem/>
                             <MenuItem fx:id="updateTableItem" text="Обновить"/>
                             <MenuItem fx:id="exportTableItem" text="Экспорт как..."/>
                         </items>

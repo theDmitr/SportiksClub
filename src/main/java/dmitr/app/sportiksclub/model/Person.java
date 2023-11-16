@@ -47,28 +47,28 @@ public class Person {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public boolean getSex() {
-        return sex;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    public String getPatronymic() {
+        return patronymic;
+    }
+
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
+    }
+
+    public boolean getSex() {
+        return sex;
     }
 
     public void setSex(boolean sex) {

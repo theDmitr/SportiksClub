@@ -11,6 +11,7 @@ module dmitr.app.sportiksclub {
     requires com.google.zxing;
     requires com.google.zxing.javase;
     requires java.desktop;
+    requires org.controlsfx.controls;
 
     opens dmitr.app.sportiksclub to javafx.fxml;
     opens dmitr.app.sportiksclub.controller to javafx.fxml;

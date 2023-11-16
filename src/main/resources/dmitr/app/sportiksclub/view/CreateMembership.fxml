@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           orientation="VERTICAL" prefHeight="246.0" prefWidth="397.0"
+           stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+           fx:controller="dmitr.app.sportiksclub.controller.CreateMembershipController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <VBox alignment="CENTER" spacing="10.0">
+        <fx:define>
+            <ToggleGroup fx:id="sexButtonsGroup"/>
+        </fx:define>
+
+        <HBox alignment="CENTER" spacing="10.0">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="100.0" text="Клиент"
+                   textAlignment="RIGHT"/>
+            <SearchableComboBox fx:id="customersSearchableComboBox"/>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="10.0">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="100.0" text="Абонемент"
+                   textAlignment="RIGHT"/>
+            <SearchableComboBox fx:id="membershipTypesSearchableComboBox"/>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="10.0">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="100.0" text="Дата начала"
+                   textAlignment="RIGHT"/>
+            <DatePicker fx:id="dataPicker"/>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="10.0">
+            <Button fx:id="createButton" mnemonicParsing="false" text="Создать"/>
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="Отменить"/>
+        </HBox>
+    </VBox>
+</SplitPane>

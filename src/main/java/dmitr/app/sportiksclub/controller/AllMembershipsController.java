@@ -1,5 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
+import dmitr.app.sportiksclub.SportiksClub;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.Membership;
 import dmitr.app.sportiksclub.model.Person;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AllMembershipsController implements Initializable {
@@ -59,6 +61,9 @@ public class AllMembershipsController implements Initializable {
 
     @FXML
     private MenuItem exportTableItem;
+
+    @FXML
+    private MenuItem createMembershipItem;
 
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
@@ -143,12 +148,21 @@ public class AllMembershipsController implements Initializable {
         membershipsTableView.getItems().remove(selected);
     }
 
+    private void createMembership() {
+        SceneController.getStageByScene(Scene.CREATE_MEMBERSHIP,
+                Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
+        ).showAndWait();
+
+        updateTableItems();
+    }
+
     private void applyActions() {
         menuImage.setOnMouseClicked(mouseEvent -> goToMenu());
         updateTableItem.setOnAction(actionEvent -> updateTableItems());
         exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
         removeMembershipItem.setOnAction(actionEvent -> removeMembership());
+        createMembershipItem.setOnAction(actionEvent -> createMembership());
     }
 
     @Override
