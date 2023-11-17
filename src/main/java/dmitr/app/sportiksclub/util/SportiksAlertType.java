@@ -21,6 +21,7 @@ public enum SportiksAlertType {
     private final Alert.AlertType alertType;
     private final Image icon;
     private final ButtonType[] buttonTypes;
+
     SportiksAlertType(Alert.AlertType alertType, InputStream iconStream, ButtonType... buttonTypes) {
         this.alertType = alertType;
         this.icon = new Image(iconStream);

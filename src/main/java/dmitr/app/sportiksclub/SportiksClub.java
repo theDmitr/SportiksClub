@@ -1,9 +1,6 @@
 package dmitr.app.sportiksclub;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.Employee;
-import dmitr.app.sportiksclub.model.MembershipType;
-import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;

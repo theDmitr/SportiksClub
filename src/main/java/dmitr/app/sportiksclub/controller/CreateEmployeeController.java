@@ -1,7 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.util.Role;
 import dmitr.app.sportiksclub.util.SportiksAlertType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
