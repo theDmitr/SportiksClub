@@ -173,6 +173,18 @@ public class DatabaseHelper {
         return customers;
     }
 
+    public static List<Employee> getEmployees() {
+        List<Employee> employees = new ArrayList<>();
+
+        try {
+            employees = employeeDao.queryForAll();
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        return employees;
+    }
+
     public static void removeMembership(Membership membership) {
         try {
             membershipDao.delete(membership);
@@ -196,6 +208,18 @@ public class DatabaseHelper {
         }
     }
 
+    public static void removeEmployee(Employee employee) {
+        try {
+            User user = employee.getUser();
+
+            employeeDao.delete(employee);
+            personDao.delete(getUserPerson(user));
+            userDao.delete(user);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
     public static void updatePerson(Person person) {
         try {
             personDao.update(person);
@@ -208,7 +232,7 @@ public class DatabaseHelper {
         try {
             List<User> users = userDao.queryForEq("login", login);
 
-            if (users.size() != 0)
+            if (!users.isEmpty())
                 return true;
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
@@ -217,9 +241,22 @@ public class DatabaseHelper {
         return false;
     }
 
-    public static void createCustomer(Role role, String login, String password, String name,
+    public static boolean isMembershipTypeUsed(MembershipType membershipType) {
+        try {
+            List<Membership> memberships = membershipDao.queryForEq("membershipType_id", membershipType.getId());
+
+            if (!memberships.isEmpty())
+                return true;
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        return false;
+    }
+
+    public static void createCustomer(String login, String password, String name,
                                       String surname, String patronymic, boolean sex) {
-        User user = new User(login, password, role);
+        User user = new User(login, password, Role.CUSTOMER);
         Person person = new Person(user, name, surname, patronymic, sex);
         Customer customer = new Customer(user);
 
@@ -232,11 +269,44 @@ public class DatabaseHelper {
         }
     }
 
+    public static void createEmployee(String login, String password, String name,
+                                      String surname, String patronymic, boolean sex) {
+        User user = new User(login, password, Role.EMPLOYEE);
+        Person person = new Person(user, name, surname, patronymic, sex);
+        Employee employee = new Employee(user);
+
+        try {
+            userDao.create(user);
+            personDao.create(person);
+            employeeDao.create(employee);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
     public static void createMembership(Customer customer, MembershipType membershipType, Date beginDate) {
         Membership membership = new Membership(customer, membershipType, beginDate);
 
         try {
             membershipDao.create(membership);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static void createMembershipType(String name, int duration, boolean hasTrainer) {
+        MembershipType membershipType = new MembershipType(name, duration, hasTrainer);
+
+        try {
+            membershipTypeDao.create(membershipType);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static void removeMembershipType(MembershipType membershipType) {
+        try {
+            membershipTypeDao.delete(membershipType);
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreateCustomerController implements Initializable {
+public class CreateEmployeeController implements Initializable {
 
     @FXML
     private ToggleGroup sexButtonsGroup;
@@ -83,7 +83,7 @@ public class CreateCustomerController implements Initializable {
 
         boolean sex = sexRadioButton.equals(maleRadioButton);
 
-        DatabaseHelper.createCustomer(login, password, name, surname, patronymic, sex);
+        DatabaseHelper.createEmployee(login, password, name, surname, patronymic, sex);
 
         SportiksAlertType.INFORMATION.getAlert("Успех", "Аккаунт зарегистрирован!", null)
                 .showAndWait();

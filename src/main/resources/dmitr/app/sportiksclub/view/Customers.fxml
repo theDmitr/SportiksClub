@@ -39,6 +39,9 @@
     <BorderPane>
         <center>
             <TableView fx:id="customersTableView" BorderPane.alignment="CENTER">
+                <placeholder>
+                    <Label text="Таблица пуста"/>
+                </placeholder>
                 <columns>
                     <TableColumn fx:id="nameTableColumn" minWidth="0.0" prefWidth="167.0" text="Имя"/>
                     <TableColumn fx:id="surnameTableColumn" minWidth="0.0" prefWidth="214.0" text="Фамилия"/>

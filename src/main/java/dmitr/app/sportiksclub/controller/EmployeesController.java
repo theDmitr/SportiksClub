@@ -2,7 +2,7 @@ package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.SportiksClub;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.Customer;
+import dmitr.app.sportiksclub.model.Employee;
 import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
@@ -27,25 +27,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CustomersController implements Initializable {
+public class EmployeesController implements Initializable {
 
     @FXML
     private ImageView menuImage;
 
     @FXML
-    private TableView<Customer> customersTableView;
+    private TableView<Employee> employeesTableView;
 
     @FXML
-    private TableColumn<Customer, String> nameTableColumn;
+    private TableColumn<Employee, String> nameTableColumn;
 
     @FXML
-    private TableColumn<Customer, String> surnameTableColumn;
+    private TableColumn<Employee, String> surnameTableColumn;
 
     @FXML
-    private TableColumn<Customer, String> patronymicTableColumn;
+    private TableColumn<Employee, String> patronymicTableColumn;
 
     @FXML
-    private TableColumn<Customer, String> sexTableColumn;
+    private TableColumn<Employee, String> sexTableColumn;
 
     @FXML
     private MenuItem contextMenuQrItem;
@@ -57,13 +57,13 @@ public class CustomersController implements Initializable {
     private MenuItem exportTableItem;
 
     @FXML
-    private MenuItem editCustomerItem;
+    private MenuItem editEmployeeItem;
 
     @FXML
-    private MenuItem removeCustomerItem;
+    private MenuItem removeEmployeeItem;
 
     @FXML
-    private MenuItem createCustomerItem;
+    private MenuItem createEmployeeItem;
 
     private void goToMenu() {
         User user = DatabaseHelper.getAuthorizedUser();
@@ -89,7 +89,7 @@ public class CustomersController implements Initializable {
 
         String fileName = file.getAbsolutePath();
 
-        ObservableList<Customer> items = customersTableView.getItems();
+        ObservableList<Employee> items = employeesTableView.getItems();
 
         String[][] fields = new String[items.size() + 1][4];
         fields[0] = new String[]{"Имя", "Фамилия", "Отчество", "Пол"};
@@ -102,11 +102,11 @@ public class CustomersController implements Initializable {
             fields[i][3] = person.getSex() ? "Мужской" : "Женский";
         }
 
-        ExcelWorkbookUtils.writeTable(fileName, "Клиенты", fields);
+        ExcelWorkbookUtils.writeTable(fileName, "Сотрудники", fields);
     }
 
     private void generateQrCode() {
-        Customer selected = customersTableView.getSelectionModel().getSelectedItem();
+        Employee selected = employeesTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
@@ -130,30 +130,30 @@ public class CustomersController implements Initializable {
     }
 
     private void removeCustomer() {
-        Customer selected = customersTableView.getSelectionModel().getSelectedItem();
+        Employee selected = employeesTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для удаления Клиента выберите элемент из таблицы!", null
+                    "Ошибка", "Для удаления аккаунта Сотрудника выберите элемент из таблицы!", null
             ).showAndWait();
             return;
         }
 
         if (SportiksAlertType.CONFIRMATION.getAlert("Подтверждение",
-                        "Вы уверены, что хотите удалить аккаунт клиента?", null)
+                        "Вы уверены, что хотите удалить аккаунт сотрудника?", null)
                 .showAndWait().get() == AlertButtonTypes.noButtonType)
             return;
 
-        DatabaseHelper.removeCustomer(selected);
-        customersTableView.getItems().remove(selected);
+        DatabaseHelper.removeEmployee(selected);
+        employeesTableView.getItems().remove(selected);
     }
 
     private void editCustomer() {
-        Customer selected = customersTableView.getSelectionModel().getSelectedItem();
+        Employee selected = employeesTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
             SportiksAlertType.ERROR.getAlert(
-                    "Ошибка", "Для редактирования Клиента выберите элемент из таблицы!", null
+                    "Ошибка", "Для редактирования аккаунта сотрудника выберите элемент из таблицы!", null
             ).showAndWait();
             return;
         }
@@ -167,8 +167,8 @@ public class CustomersController implements Initializable {
         updateTableItems();
     }
 
-    private void createCustomer() {
-        SceneController.getStageByScene(Scene.CREATE_CUSTOMER,
+    private void createEmployee() {
+        SceneController.getStageByScene(Scene.CREATE_EMPLOYEE,
                 Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
         ).showAndWait();
 
@@ -180,9 +180,9 @@ public class CustomersController implements Initializable {
         updateTableItem.setOnAction(actionEvent -> updateTableItems());
         exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
-        removeCustomerItem.setOnAction(actionEvent -> removeCustomer());
-        editCustomerItem.setOnAction(actionEvent -> editCustomer());
-        createCustomerItem.setOnAction(actionEvent -> createCustomer());
+        removeEmployeeItem.setOnAction(actionEvent -> removeCustomer());
+        editEmployeeItem.setOnAction(actionEvent -> editCustomer());
+        createEmployeeItem.setOnAction(actionEvent -> createEmployee());
     }
 
     @Override
@@ -211,9 +211,9 @@ public class CustomersController implements Initializable {
     }
 
     private void updateTableItems() {
-        List<Customer> membershipTypeItems = DatabaseHelper.getCustomers();
-        ObservableList<Customer> data = FXCollections.observableArrayList(membershipTypeItems);
-        customersTableView.setItems(data);
+        List<Employee> employeesItems = DatabaseHelper.getEmployees();
+        ObservableList<Employee> data = FXCollections.observableArrayList(employeesItems);
+        employeesTableView.setItems(data);
     }
 
 }

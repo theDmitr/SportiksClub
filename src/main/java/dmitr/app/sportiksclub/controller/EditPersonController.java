@@ -1,7 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
-import dmitr.app.sportiksclub.model.Customer;
 import dmitr.app.sportiksclub.model.Person;
 import dmitr.app.sportiksclub.util.AlertButtonTypes;
 import dmitr.app.sportiksclub.util.SportiksAlertType;
@@ -16,9 +15,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditCustomerController implements Initializable {
+public class EditPersonController implements Initializable {
 
-    private static Customer editable;
+    private static Person editable;
     @FXML
     private ToggleGroup sexButtonsGroup;
     @FXML
@@ -36,8 +35,8 @@ public class EditCustomerController implements Initializable {
     @FXML
     private Button cancelButton;
 
-    public static void setEditableCustomer(Customer customer) {
-        editable = customer;
+    public static void setEditablePerson(Person person) {
+        editable = person;
     }
 
     private void saveData() {
@@ -65,13 +64,12 @@ public class EditCustomerController implements Initializable {
                 .showAndWait().get() == AlertButtonTypes.noButtonType)
             return;
 
-        Person person = DatabaseHelper.getUserPerson(editable.getUser());
-        person.setName(name);
-        person.setSurname(surname);
-        person.setPatronymic(patronymic);
-        person.setSex(sex);
+        editable.setName(name);
+        editable.setSurname(surname);
+        editable.setPatronymic(patronymic);
+        editable.setSex(sex);
 
-        DatabaseHelper.updatePerson(person);
+        DatabaseHelper.updatePerson(editable);
 
         SportiksAlertType.INFORMATION.getAlert("Успех", "Данные аккаунта изменены!", null)
                 .showAndWait();
@@ -98,13 +96,10 @@ public class EditCustomerController implements Initializable {
                     "Произошла непредвиденная ошибка!", null).showAndWait();
             close();
         }
-
-        Person person = DatabaseHelper.getUserPerson(editable.getUser());
-
-        nameTextField.setText(person.getName());
-        surnameTextField.setText(person.getSurname());
-        patronymicTextField.setText(person.getPatronymic());
-        sexButtonsGroup.selectToggle(person.getSex() ? maleRadioButton : femaleRadioButton);
+        nameTextField.setText(editable.getName());
+        surnameTextField.setText(editable.getSurname());
+        patronymicTextField.setText(editable.getPatronymic());
+        sexButtonsGroup.selectToggle(editable.getSex() ? maleRadioButton : femaleRadioButton);
     }
 
 }

@@ -41,6 +41,7 @@ public class CreateMembershipController implements Initializable {
     private void create() {
         Customer customer = customersSearchableComboBox.getSelectionModel().getSelectedItem();
         MembershipType membershipType = membershipTypesSearchableComboBox.getSelectionModel().getSelectedItem();
+        Date dateStart;
 
         if (customer == null) {
             SportiksAlertType.ERROR.getAlert("Ошибка", "Выберите клиента!", null)
@@ -60,10 +61,17 @@ public class CreateMembershipController implements Initializable {
             return;
         }
 
-        Date dateStart = Date.valueOf(dataPicker.getValue());
+        try {
+            dateStart = Date.valueOf(dataPicker.getValue());
+        } catch (Exception exception) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Некорректно выбрана дата начала!", null)
+                    .showAndWait();
+            return;
+        }
+
 
         if (dateStart.before(Date.valueOf(LocalDate.now()))) {
-            SportiksAlertType.ERROR.getAlert("Ошибка", "Некорректно выбрана дата начала!", null)
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Дата начала может начинаться только с сегодняшнего дня!", null)
                     .showAndWait();
             return;
         }

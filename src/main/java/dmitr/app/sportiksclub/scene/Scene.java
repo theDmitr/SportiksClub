@@ -16,9 +16,13 @@ public enum Scene {
     CUSTOMER_MEMBERSHIPS("Sportik`s Club | Мои абонементы", SportiksClub.class.getResource("view/CustomerMemberships.fxml")),
     CUSTOMERS("Sportik`s Club | Клиенты", SportiksClub.class.getResource("view/Customers.fxml")),
     ALL_MEMBERSHIPS("Sportik`s Club | Абонементы клиентов", SportiksClub.class.getResource("view/AllMemberships.fxml")),
-    EDIT_CUSTOMER("Sportik`s Club | Редактор клиента", SportiksClub.class.getResource("view/EditCustomer.fxml")),
+    EDIT_PERSON("Sportik`s Club | Редактор аккаунта", SportiksClub.class.getResource("view/EditCustomer.fxml")),
     CREATE_CUSTOMER("Sportik`s Club | Регистрация клиента", SportiksClub.class.getResource("view/CreateCustomer.fxml")),
-    CREATE_MEMBERSHIP("Sportik`s Club | Применение абонемента", SportiksClub.class.getResource("view/CreateMembership.fxml"));
+    CREATE_MEMBERSHIP("Sportik`s Club | Применение абонемента", SportiksClub.class.getResource("view/CreateMembership.fxml")),
+    EMPLOYEES("Sportik`s Club | Сотрудники", SportiksClub.class.getResource("view/Employees.fxml")),
+    ADMIN_MEMBERSHIP_TYPES("Sportik`s Club | Абонементы", SportiksClub.class.getResource("view/AdminMembershipTypes.fxml")),
+    CREATE_EMPLOYEE("Sportik`s Club | Регистрация сотрудника", SportiksClub.class.getResource("view/CreateEmployee.fxml")),
+    CREATE_MEMBERSHIP_TYPE("Sportik`s Club | Создание абонемента", SportiksClub.class.getResource("view/CreateMembershipType.fxml"));
 
     private final String caption;
     private final URL filePath;

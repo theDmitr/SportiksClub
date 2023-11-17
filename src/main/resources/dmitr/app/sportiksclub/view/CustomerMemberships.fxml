@@ -39,6 +39,9 @@
     <BorderPane>
         <center>
             <TableView fx:id="membershipsTableView" BorderPane.alignment="CENTER">
+                <placeholder>
+                    <Label text="Таблица пуста"/>
+                </placeholder>
                 <columns>
                     <TableColumn fx:id="nameTableColumn" minWidth="0.0" prefWidth="318.0" text="Абонемент"/>
                     <TableColumn fx:id="endDateTableColumn" minWidth="0.0" prefWidth="186.0" text="Дата окончания"/>

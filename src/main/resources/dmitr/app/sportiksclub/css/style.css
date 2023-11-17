@@ -132,15 +132,3 @@
     -fx-border-radius: 15px;
     -fx-padding: 3px;
 }
-
-.radio-button .radio:selected ~ .dot {
-    -fx-background-radius: 15px;
-    -fx-padding: 8px;
-    -fx-background-color: #698aff;
-}
-
-.radio-button .radio ~ .radio-button .dot {
-    -fx-background-radius: 15px;
-    -fx-padding: 8px;
-    -fx-background-color: white;
-}

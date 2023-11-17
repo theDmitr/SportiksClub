@@ -36,26 +36,11 @@ public class CustomerMenuController implements Initializable {
     }
 
     private void applyActions() {
-        logoutImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                logout();
-            }
-        });
+        logoutImage.setOnMouseClicked(mouseEvent -> logout());
 
-        membershipTypesButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.MEMBERSHIP_TYPES);
-            }
-        });
+        membershipTypesButton.setOnAction(actionEvent -> SceneController.setScene(Scene.MEMBERSHIP_TYPES));
 
-        membershipsButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.CUSTOMER_MEMBERSHIPS);
-            }
-        });
+        membershipsButton.setOnAction(actionEvent -> SceneController.setScene(Scene.CUSTOMER_MEMBERSHIPS));
     }
 
     @Override

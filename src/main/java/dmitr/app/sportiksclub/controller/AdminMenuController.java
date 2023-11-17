@@ -7,6 +7,7 @@ import dmitr.app.sportiksclub.scene.SceneController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,18 +23,21 @@ public class AdminMenuController implements Initializable {
     @FXML
     private ImageView logoutImage;
 
+    @FXML
+    private Button employeesButton;
+
+    @FXML
+    private Button membershipTypesButton;
+
     private void logout() {
         DatabaseHelper.logoutUser();
         SceneController.setScene(Scene.AUTH);
     }
 
     private void applyActions() {
-        logoutImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                logout();
-            }
-        });
+        logoutImage.setOnMouseClicked(mouseEvent -> logout());
+        employeesButton.setOnAction(actionEvent -> SceneController.setScene(Scene.EMPLOYEES));
+        membershipTypesButton.setOnAction(actionEvent -> SceneController.setScene(Scene.ADMIN_MEMBERSHIP_TYPES));
     }
 
     @Override

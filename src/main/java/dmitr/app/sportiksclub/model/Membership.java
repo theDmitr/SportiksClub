@@ -19,9 +19,6 @@ public class Membership {
     private MembershipType membershipType;
 
     @DatabaseField(canBeNull = false)
-    private boolean status;
-
-    @DatabaseField(canBeNull = false)
     private Date beginDate;
 
     @DatabaseField(canBeNull = false)
@@ -39,10 +36,6 @@ public class Membership {
 
     public int getId() {
         return id;
-    }
-
-    public boolean getStatus() {
-        return status;
     }
 
     public Customer getCustomer() {
