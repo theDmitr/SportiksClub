@@ -68,8 +68,8 @@ public class CreateEmployeeController implements Initializable {
             return;
         }
 
-        if (name.isEmpty() || surname.isEmpty() || patronymic.isEmpty()) {
-            SportiksAlertType.ERROR.getAlert("Ошибка", "Заполните поля ФИО!", null)
+        if (name.isEmpty() || surname.isEmpty()) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Заполните поля ФИ!", null)
                     .showAndWait();
             return;
         }

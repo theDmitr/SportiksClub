@@ -10,7 +10,7 @@ public class PersonUtils {
                 new String[]{
                         person.getSurname(),
                         person.getName().charAt(0) + ".",
-                        person.getPatronymic().charAt(0) + "."
+                        !person.getPatronymic().isEmpty() ? person.getPatronymic().charAt(0) + "." : ""
                 }
         );
     }
