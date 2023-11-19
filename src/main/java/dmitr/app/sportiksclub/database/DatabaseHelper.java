@@ -5,6 +5,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import dmitr.app.sportiksclub.model.*;
 import dmitr.app.sportiksclub.util.Role;
+import dmitr.app.sportiksclub.util.SHA256Hasher;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ public class DatabaseHelper {
             membershipDao = DaoManager.createDao(connectionSource, Membership.class);
             employeeDao = DaoManager.createDao(connectionSource, Employee.class);
             customerDao = DaoManager.createDao(connectionSource, Customer.class);
+            ensureAdminAccount();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -292,6 +294,16 @@ public class DatabaseHelper {
         }
     }
 
+    public static void createAdmin(String login, String password) {
+        User user = new User(login, password, Role.ADMIN);
+
+        try {
+            userDao.create(user);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
     public static void createMembership(Customer customer, MembershipType membershipType, Date beginDate) {
         Membership membership = new Membership(customer, membershipType, beginDate);
 
@@ -315,6 +327,16 @@ public class DatabaseHelper {
     public static void removeMembershipType(MembershipType membershipType) {
         try {
             membershipTypeDao.delete(membershipType);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static void ensureAdminAccount() {
+        try {
+            List<User> admins = userDao.queryForEq("role", Role.ADMIN);
+            if (admins.isEmpty())
+                createAdmin("admin", SHA256Hasher.getHash("admin"));
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }

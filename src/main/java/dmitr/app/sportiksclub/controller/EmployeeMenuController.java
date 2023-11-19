@@ -51,11 +51,15 @@ public class EmployeeMenuController implements Initializable {
         userLoginLabel.setOnMouseClicked(mouseEvent -> openPersonInfo());
     }
 
+    private void updateUserLoginLabel() {
+        User user = DatabaseHelper.getAuthorizedUser();
+        userLoginLabel.setText(user.getLogin());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         applyActions();
-        User user = DatabaseHelper.getAuthorizedUser();
-        userLoginLabel.setText(user.getLogin());
+        updateUserLoginLabel();
     }
 
 }
