@@ -5,6 +5,7 @@ import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
 import dmitr.app.sportiksclub.util.Role;
+import dmitr.app.sportiksclub.util.SHA256Hasher;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -19,7 +20,7 @@ public class SportiksClub extends Application {
     }
 
     private static void fill() throws SQLException {
-        User user = new User("admin", "", Role.ADMIN);
+        User user = new User("admin", SHA256Hasher.getHash(""), Role.ADMIN);
         DatabaseHelper.getUserDao().create(user);
     }
 

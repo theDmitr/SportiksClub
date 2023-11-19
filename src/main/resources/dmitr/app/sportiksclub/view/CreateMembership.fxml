@@ -32,7 +32,7 @@
         <HBox alignment="CENTER" spacing="10.0">
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="100.0" text="Дата начала"
                    textAlignment="RIGHT"/>
-            <DatePicker fx:id="dataPicker"/>
+            <DatePicker fx:id="dataPicker" editable="false"/>
         </HBox>
 
         <HBox alignment="CENTER" spacing="10.0">

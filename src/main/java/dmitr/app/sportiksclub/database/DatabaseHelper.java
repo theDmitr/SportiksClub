@@ -228,6 +228,14 @@ public class DatabaseHelper {
         }
     }
 
+    public static void updateUser(User user) {
+        try {
+            userDao.update(user);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
     public static boolean isLoginUsed(String login) {
         try {
             List<User> users = userDao.queryForEq("login", login);

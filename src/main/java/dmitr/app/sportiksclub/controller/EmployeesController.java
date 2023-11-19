@@ -148,7 +148,7 @@ public class EmployeesController implements Initializable {
         employeesTableView.getItems().remove(selected);
     }
 
-    private void editCustomer() {
+    private void editEmployee() {
         Employee selected = employeesTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
@@ -181,7 +181,7 @@ public class EmployeesController implements Initializable {
         exportTableItem.setOnAction(actionEvent -> exportTable());
         contextMenuQrItem.setOnAction(actionEvent -> generateQrCode());
         removeEmployeeItem.setOnAction(actionEvent -> removeCustomer());
-        editEmployeeItem.setOnAction(actionEvent -> editCustomer());
+        editEmployeeItem.setOnAction(actionEvent -> editEmployee());
         createEmployeeItem.setOnAction(actionEvent -> createEmployee());
     }
 

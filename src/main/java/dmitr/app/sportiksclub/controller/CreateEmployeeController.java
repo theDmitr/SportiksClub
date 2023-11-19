@@ -1,6 +1,7 @@
 package dmitr.app.sportiksclub.controller;
 
 import dmitr.app.sportiksclub.database.DatabaseHelper;
+import dmitr.app.sportiksclub.util.SHA256Hasher;
 import dmitr.app.sportiksclub.util.SportiksAlertType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -82,7 +83,7 @@ public class CreateEmployeeController implements Initializable {
 
         boolean sex = sexRadioButton.equals(maleRadioButton);
 
-        DatabaseHelper.createEmployee(login, password, name, surname, patronymic, sex);
+        DatabaseHelper.createEmployee(login, SHA256Hasher.getHash(password), name, surname, patronymic, sex);
 
         SportiksAlertType.INFORMATION.getAlert("Успех", "Аккаунт зарегистрирован!", null)
                 .showAndWait();

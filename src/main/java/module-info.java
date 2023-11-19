@@ -13,6 +13,8 @@ module dmitr.app.sportiksclub {
     requires java.desktop;
     requires org.controlsfx.controls;
 
+    requires com.google.common;
+
     opens dmitr.app.sportiksclub to javafx.fxml;
     opens dmitr.app.sportiksclub.controller to javafx.fxml;
     opens dmitr.app.sportiksclub.model to ormlite.jdbc;

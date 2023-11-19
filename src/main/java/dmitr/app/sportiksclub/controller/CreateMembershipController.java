@@ -61,14 +61,7 @@ public class CreateMembershipController implements Initializable {
             return;
         }
 
-        try {
-            dateStart = Date.valueOf(dataPicker.getValue());
-        } catch (Exception exception) {
-            SportiksAlertType.ERROR.getAlert("Ошибка", "Некорректно выбрана дата начала!", null)
-                    .showAndWait();
-            return;
-        }
-
+        dateStart = Date.valueOf(dataPicker.getValue());
 
         if (dateStart.before(Date.valueOf(LocalDate.now()))) {
             SportiksAlertType.ERROR.getAlert("Ошибка", "Дата начала может начинаться только с сегодняшнего дня!", null)

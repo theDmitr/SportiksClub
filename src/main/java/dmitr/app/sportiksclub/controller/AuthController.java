@@ -4,6 +4,7 @@ import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
+import dmitr.app.sportiksclub.util.SHA256Hasher;
 import dmitr.app.sportiksclub.util.SportiksAlertType;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +32,7 @@ public class AuthController implements Initializable {
     private PasswordField passwordTextField;
 
     private void auth(String login, String password, ActionEvent actionEvent) {
-        boolean success = DatabaseHelper.authUser(login, password);
+        boolean success = DatabaseHelper.authUser(login, SHA256Hasher.getHash(password));
 
         if (!success) {
             SportiksAlertType.ERROR.getAlert("Произошла ошибка!",

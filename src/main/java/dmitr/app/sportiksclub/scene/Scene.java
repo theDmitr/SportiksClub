@@ -16,7 +16,7 @@ public enum Scene {
     CUSTOMER_MEMBERSHIPS("Sportik`s Club | Мои абонементы", SportiksClub.class.getResource("view/CustomerMemberships.fxml")),
     CUSTOMERS("Sportik`s Club | Клиенты", SportiksClub.class.getResource("view/Customers.fxml")),
     ALL_MEMBERSHIPS("Sportik`s Club | Абонементы клиентов", SportiksClub.class.getResource("view/AllMemberships.fxml")),
-    EDIT_PERSON("Sportik`s Club | Редактор аккаунта", SportiksClub.class.getResource("view/EditCustomer.fxml")),
+    EDIT_PERSON("Sportik`s Club | Редактор аккаунта", SportiksClub.class.getResource("view/EditPerson.fxml")),
     CREATE_CUSTOMER("Sportik`s Club | Регистрация клиента", SportiksClub.class.getResource("view/CreateCustomer.fxml")),
     CREATE_MEMBERSHIP("Sportik`s Club | Применение абонемента", SportiksClub.class.getResource("view/CreateMembership.fxml")),
     EMPLOYEES("Sportik`s Club | Сотрудники", SportiksClub.class.getResource("view/Employees.fxml")),
