@@ -1,5 +1,6 @@
 package dmitr.app.sportiksclub.controller;
 
+import dmitr.app.sportiksclub.SportiksClub;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CustomerMenuController implements Initializable {
@@ -32,12 +34,17 @@ public class CustomerMenuController implements Initializable {
         SceneController.setScene(Scene.AUTH);
     }
 
+    private void openPersonInfo() {
+        SceneController.getStageByScene(Scene.PERSON_INFO,
+                Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
+        ).showAndWait();
+    }
+
     private void applyActions() {
         logoutImage.setOnMouseClicked(mouseEvent -> logout());
-
         membershipTypesButton.setOnAction(actionEvent -> SceneController.setScene(Scene.MEMBERSHIP_TYPES));
-
         membershipsButton.setOnAction(actionEvent -> SceneController.setScene(Scene.CUSTOMER_MEMBERSHIPS));
+        userLoginLabel.setOnMouseClicked(mouseEvent -> openPersonInfo());
     }
 
     @Override

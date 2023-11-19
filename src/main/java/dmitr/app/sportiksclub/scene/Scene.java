@@ -22,7 +22,8 @@ public enum Scene {
     EMPLOYEES("Sportik`s Club | Сотрудники", SportiksClub.class.getResource("view/Employees.fxml")),
     ADMIN_MEMBERSHIP_TYPES("Sportik`s Club | Абонементы", SportiksClub.class.getResource("view/AdminMembershipTypes.fxml")),
     CREATE_EMPLOYEE("Sportik`s Club | Регистрация сотрудника", SportiksClub.class.getResource("view/CreateEmployee.fxml")),
-    CREATE_MEMBERSHIP_TYPE("Sportik`s Club | Создание абонемента", SportiksClub.class.getResource("view/CreateMembershipType.fxml"));
+    CREATE_MEMBERSHIP_TYPE("Sportik`s Club | Создание абонемента", SportiksClub.class.getResource("view/CreateMembershipType.fxml")),
+    PERSON_INFO("Sportik`s Club | Информация об аккаунте", SportiksClub.class.getResource("view/PersonInfo.fxml"));
 
     private final String caption;
     private final URL filePath;

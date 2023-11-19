@@ -1,19 +1,18 @@
 package dmitr.app.sportiksclub.controller;
 
+import dmitr.app.sportiksclub.SportiksClub;
 import dmitr.app.sportiksclub.database.DatabaseHelper;
 import dmitr.app.sportiksclub.model.User;
 import dmitr.app.sportiksclub.scene.Scene;
 import dmitr.app.sportiksclub.scene.SceneController;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EmployeeMenuController implements Initializable {
@@ -38,34 +37,18 @@ public class EmployeeMenuController implements Initializable {
         SceneController.setScene(Scene.AUTH);
     }
 
+    private void openPersonInfo() {
+        SceneController.getStageByScene(Scene.PERSON_INFO,
+                Objects.requireNonNull(SportiksClub.class.getResourceAsStream("image/person.png"))
+        ).showAndWait();
+    }
+
     private void applyActions() {
-        logoutImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                logout();
-            }
-        });
-
-        customersButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.CUSTOMERS);
-            }
-        });
-
-        membershipTypesButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.MEMBERSHIP_TYPES);
-            }
-        });
-
-        membershipsButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.ALL_MEMBERSHIPS);
-            }
-        });
+        logoutImage.setOnMouseClicked(mouseEvent -> logout());
+        customersButton.setOnAction(actionEvent -> SceneController.setScene(Scene.CUSTOMERS));
+        membershipTypesButton.setOnAction(actionEvent -> SceneController.setScene(Scene.MEMBERSHIP_TYPES));
+        membershipsButton.setOnAction(actionEvent -> SceneController.setScene(Scene.ALL_MEMBERSHIPS));
+        userLoginLabel.setOnMouseClicked(mouseEvent -> openPersonInfo());
     }
 
     @Override
