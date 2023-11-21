@@ -9,7 +9,7 @@ public class MembershipType {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false, columnDefinition = "VARCHAR(50)")
     private String name;
 
     @DatabaseField(canBeNull = false)

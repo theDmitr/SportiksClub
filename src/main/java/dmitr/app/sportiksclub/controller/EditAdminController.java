@@ -43,6 +43,12 @@ public class EditAdminController implements Initializable {
                 return;
             }
 
+            if (login.length() > 24) {
+                SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина логина 24 символа!", null)
+                        .showAndWait();
+                return;
+            }
+
             if (DatabaseHelper.isLoginUsed(login)) {
                 SportiksAlertType.ERROR.getAlert("Ошибка", "Данный логин занят!", null)
                         .showAndWait();
@@ -55,6 +61,12 @@ public class EditAdminController implements Initializable {
 
             if (password.isEmpty()) {
                 SportiksAlertType.ERROR.getAlert("Ошибка", "Заполните поле пароль!", null)
+                        .showAndWait();
+                return;
+            }
+
+            if (password.length() > 64) {
+                SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина пароля 64 символа!", null)
                         .showAndWait();
                 return;
             }

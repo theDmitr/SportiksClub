@@ -40,6 +40,12 @@ public class CreateMembershipTypeController implements Initializable {
             return;
         }
 
+        if (name.length() > 50) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина названия 50 символов!", null)
+                    .showAndWait();
+            return;
+        }
+
         int duration;
 
         try {

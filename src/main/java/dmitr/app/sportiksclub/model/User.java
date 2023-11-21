@@ -11,10 +11,10 @@ public class User {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false, columnDefinition = "VARCHAR(24)")
     private String login;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false, columnDefinition = "VARCHAR(64)")
     private String password;
 
     @DatabaseField(canBeNull = false)

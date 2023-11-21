@@ -12,13 +12,13 @@ public class Person {
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
     private User user;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false, columnDefinition = "VARCHAR(16)")
     private String name;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false, columnDefinition = "VARCHAR(30)")
     private String surname;
 
-    @DatabaseField
+    @DatabaseField(columnDefinition = "VARCHAR(16)")
     private String patronymic;
 
     @DatabaseField(canBeNull = false)

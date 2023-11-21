@@ -60,6 +60,24 @@ public class EditPersonController implements Initializable {
             return;
         }
 
+        if (name.length() > 16) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина имя 16 символов!", null)
+                    .showAndWait();
+            return;
+        }
+
+        if (surname.length() > 30) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина фамилии 30 символов!", null)
+                    .showAndWait();
+            return;
+        }
+
+        if (patronymic.length() > 16) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина отчества 16 символов!", null)
+                    .showAndWait();
+            return;
+        }
+
         if (sexRadioButton == null) {
             SportiksAlertType.ERROR.getAlert("Ошибка", "Выберите пол!", null)
                     .showAndWait();
@@ -77,6 +95,12 @@ public class EditPersonController implements Initializable {
                 return;
             }
 
+            if (login.length() > 24) {
+                SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина логина 24 символа!", null)
+                        .showAndWait();
+                return;
+            }
+
             if (DatabaseHelper.isLoginUsed(login)) {
                 SportiksAlertType.ERROR.getAlert("Ошибка", "Данный логин занят!", null)
                         .showAndWait();
@@ -89,6 +113,12 @@ public class EditPersonController implements Initializable {
 
             if (password.isEmpty()) {
                 SportiksAlertType.ERROR.getAlert("Ошибка", "Заполните поле пароль!", null)
+                        .showAndWait();
+                return;
+            }
+
+            if (password.length() > 64) {
+                SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина пароля 64 символа!", null)
                         .showAndWait();
                 return;
             }

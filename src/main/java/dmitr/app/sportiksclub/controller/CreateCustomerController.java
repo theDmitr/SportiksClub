@@ -57,6 +57,12 @@ public class CreateCustomerController implements Initializable {
             return;
         }
 
+        if (login.length() > 24) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина логина 24 символа!", null)
+                    .showAndWait();
+            return;
+        }
+
         if (DatabaseHelper.isLoginUsed(login)) {
             SportiksAlertType.ERROR.getAlert("Ошибка", "Данный логин занят!", null)
                     .showAndWait();
@@ -69,8 +75,32 @@ public class CreateCustomerController implements Initializable {
             return;
         }
 
+        if (password.length() > 64) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина пароля 64 символа!", null)
+                    .showAndWait();
+            return;
+        }
+
         if (name.isEmpty() || surname.isEmpty()) {
-            SportiksAlertType.ERROR.getAlert("Ошибка", "Заполните поля ФИ!", null)
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Заполните поля ФИО!", null)
+                    .showAndWait();
+            return;
+        }
+
+        if (name.length() > 16) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина имя 16 символов!", null)
+                    .showAndWait();
+            return;
+        }
+
+        if (surname.length() > 30) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина фамилии 30 символов!", null)
+                    .showAndWait();
+            return;
+        }
+
+        if (patronymic.length() > 16) {
+            SportiksAlertType.ERROR.getAlert("Ошибка", "Максимальная длина отчества 16 символов!", null)
                     .showAndWait();
             return;
         }

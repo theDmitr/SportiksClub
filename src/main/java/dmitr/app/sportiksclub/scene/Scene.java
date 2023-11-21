@@ -23,7 +23,7 @@ public enum Scene {
     ADMIN_MEMBERSHIP_TYPES("Sportik`s Club | Абонементы", "view/AdminMembershipTypes.fxml"),
     CREATE_EMPLOYEE("Sportik`s Club | Регистрация сотрудника", "view/CreateEmployee.fxml"),
     CREATE_MEMBERSHIP_TYPE("Sportik`s Club | Создание абонемента", "view/CreateMembershipType.fxml"),
-    PERSON_INFO("Sportik`s Club | Информация об аккаунте", 337, 230, "view/PersonInfo.fxml"),
+    PERSON_INFO("Sportik`s Club | Информация об аккаунте", 337, 250, "view/PersonInfo.fxml"),
     EDIT_ADMIN("Sportik`s Club | Редактор аккаунта", 450, 250, "view/EditAdmin.fxml");
 
 
