@@ -18,7 +18,7 @@ public class SceneController {
     }
 
     public static void setScene(dmitr.app.sportiksclub.scene.Scene scene) {
-        FXMLLoader fxmlLoader = new FXMLLoader(scene.getFilePath());
+        FXMLLoader fxmlLoader = new FXMLLoader(scene.getSceneFile());
         Scene stageScene;
 
         try {
@@ -26,6 +26,9 @@ public class SceneController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        stage.setMinWidth(scene.getMinWidth());
+        stage.setMinHeight(scene.getMinHeight());
 
         SceneController.stage.setTitle(scene.getCaption());
         SceneController.stage.setScene(stageScene);
@@ -36,7 +39,7 @@ public class SceneController {
         Stage tempStage = new Stage();
         tempStage.getIcons().add(new Image(iconStream));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(scene.getFilePath());
+        FXMLLoader fxmlLoader = new FXMLLoader(scene.getSceneFile());
         Scene stageScene;
 
         try {
@@ -44,6 +47,9 @@ public class SceneController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        tempStage.setMinWidth(scene.getMinWidth());
+        tempStage.setMinHeight(scene.getMinHeight());
 
         tempStage.setTitle(scene.getCaption());
         tempStage.setScene(stageScene);
