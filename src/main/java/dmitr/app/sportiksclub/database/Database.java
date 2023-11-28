@@ -42,6 +42,11 @@ public class Database {
         TableUtils.createTableIfNotExists(connectionSource, Customer.class);
     }
 
+    /**
+     * Возвращает соединение с БД
+     *
+     * @return connectionSource
+     */
     public ConnectionSource getConnectionSource() {
         return connectionSource;
     }

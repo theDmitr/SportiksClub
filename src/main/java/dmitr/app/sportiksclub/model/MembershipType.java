@@ -27,18 +27,35 @@ public class MembershipType {
         this.hasTrainer = hasTrainer;
     }
 
+    /**
+     * Возвращает ID абонемента
+     *
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Возвращает наименование абонемента
+     * @return наименование
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Возвращает длительность абонемента
+     * @return длительность
+     */
     public int getDuration() {
         return duration;
     }
 
+    /**
+     * Возвращает наличие тренера
+     * @return наличие тренера
+     */
     public boolean hasTrainer() {
         return hasTrainer;
     }

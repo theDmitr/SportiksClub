@@ -28,10 +28,23 @@ public enum SportiksAlertType {
         this.buttonTypes = buttonTypes;
     }
 
+    /**
+     * Возвращает окно диалога
+     *
+     * @param alert диалог
+     * @return окно
+     */
     public static Stage getStageFromAlert(Alert alert) {
         return (Stage) alert.getDialogPane().getScene().getWindow();
     }
 
+    /**
+     * Возвращает диалог
+     * @param caption заголовок диалога
+     * @param content текст диалога
+     * @param imageView изображение внутри диалога
+     * @return диалог
+     */
     public Alert getAlert(String caption, String content, ImageView imageView) {
         Alert alert = new Alert(alertType);
 

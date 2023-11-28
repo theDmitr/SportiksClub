@@ -39,30 +39,13 @@ public class DatabaseHelper {
         }
     }
 
-    public static Dao<User, Integer> getUserDao() {
-        return userDao;
-    }
-
-    public static Dao<Person, Integer> getPersonDao() {
-        return personDao;
-    }
-
-    public static Dao<MembershipType, Integer> getMembershipTypeDao() {
-        return membershipTypeDao;
-    }
-
-    public static Dao<Membership, Integer> getMembershipDao() {
-        return membershipDao;
-    }
-
-    public static Dao<Employee, Integer> getEmployeeDao() {
-        return employeeDao;
-    }
-
-    public static Dao<Customer, Integer> getCustomerDao() {
-        return customerDao;
-    }
-
+    /**
+     * Авторизация пользователя
+     *
+     * @param login    логин
+     * @param password пароль
+     * @return результат авторизации
+     */
     public static boolean authUser(String login, String password) {
         List<User> users = null;
 
@@ -85,19 +68,26 @@ public class DatabaseHelper {
         return true;
     }
 
+    /**
+     * Завершает сеанс пользователя
+     */
     public static void logoutUser() {
         authorizedUser = null;
     }
 
+    /**
+     * Возвращает авторизованного пользователя
+     * @return сущность пользователя
+     */
     public static User getAuthorizedUser() {
         return authorizedUser;
     }
 
-    public static Person getAuthorizedUserPerson() {
-        User user = getAuthorizedUser();
-        return getUserPerson(user);
-    }
-
+    /**
+     * Возвращает Персону Пользователя
+     * @param user сущность пользователя
+     * @return сущность персоны
+     */
     public static Person getUserPerson(User user) {
         Person person;
 
@@ -110,6 +100,10 @@ public class DatabaseHelper {
         return person;
     }
 
+    /**
+     * Возвращает все абонементы
+     * @return коллекция абнементов
+     */
     public static List<MembershipType> getMembershipTypes() {
         List<MembershipType> membershipTypes = new ArrayList<>();
 
@@ -122,6 +116,10 @@ public class DatabaseHelper {
         return membershipTypes;
     }
 
+    /**
+     * Возвращает все зарегистрированные абонементы
+     * @return коллекция абонементов
+     */
     public static List<Membership> getMemberships() {
         List<Membership> memberships = new ArrayList<>();
 
@@ -134,6 +132,11 @@ public class DatabaseHelper {
         return memberships;
     }
 
+    /**
+     * Возвращает зарегистрированные на клиента абонементы
+     * @param customer сущность клиента
+     * @return коллекция абонементов
+     */
     public static List<Membership> getMemberships(Customer customer) {
         List<Membership> memberships = new ArrayList<>();
 
@@ -146,6 +149,11 @@ public class DatabaseHelper {
         return memberships;
     }
 
+    /**
+     * Возвращает зарегистрированные на пользователя абонементы
+     * @param user пользователь
+     * @return коллекция абонементов
+     */
     public static List<Membership> getMemberships(User user) {
         if (user.getRole() != Role.CUSTOMER)
             throw new RuntimeException("User isn`t customer!");
@@ -163,6 +171,10 @@ public class DatabaseHelper {
         return memberships;
     }
 
+    /**
+     * Возвращает коллекцию клиентов
+     * @return коллекция клиентов
+     */
     public static List<Customer> getCustomers() {
         List<Customer> customers = new ArrayList<>();
 
@@ -175,6 +187,10 @@ public class DatabaseHelper {
         return customers;
     }
 
+    /**
+     * Возвращает коллекцию сотрудников
+     * @return коллекция сотрудников
+     */
     public static List<Employee> getEmployees() {
         List<Employee> employees = new ArrayList<>();
 
@@ -187,6 +203,10 @@ public class DatabaseHelper {
         return employees;
     }
 
+    /**
+     * Удаляет абонемент клиента (Дерегистрация)
+     * @param membership
+     */
     public static void removeMembership(Membership membership) {
         try {
             membershipDao.delete(membership);
@@ -195,6 +215,10 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Удаляет аккаунт клиента
+     * @param customer клиент
+     */
     public static void removeCustomer(Customer customer) {
         try {
             List<Membership> memberships = membershipDao.queryForEq("customer_id", customer.getId());
@@ -210,6 +234,10 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Удаляет аккаунт сотрудника
+     * @param employee сотрудник
+     */
     public static void removeEmployee(Employee employee) {
         try {
             User user = employee.getUser();
@@ -222,6 +250,10 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Обновляет сущность Персоны
+     * @param person персона
+     */
     public static void updatePerson(Person person) {
         try {
             personDao.update(person);
@@ -230,6 +262,10 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Обновляет сущность пользователя
+     * @param user пользователь
+     */
     public static void updateUser(User user) {
         try {
             userDao.update(user);
@@ -238,6 +274,11 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Проверяет, занят ли логин
+     * @param login логин
+     * @return результат проверки
+     */
     public static boolean isLoginUsed(String login) {
         try {
             List<User> users = userDao.queryForEq("login", login);
@@ -251,6 +292,11 @@ public class DatabaseHelper {
         return false;
     }
 
+    /**
+     * Проверяет, используется ли абонемент
+     * @param membershipType абонемент
+     * @return результат проверки
+     */
     public static boolean isMembershipTypeUsed(MembershipType membershipType) {
         try {
             List<Membership> memberships = membershipDao.queryForEq("membershipType_id", membershipType.getId());
@@ -264,6 +310,15 @@ public class DatabaseHelper {
         return false;
     }
 
+    /**
+     * Создает аккаунт клиента
+     * @param login логин
+     * @param password пароль
+     * @param name имя
+     * @param surname фамилия
+     * @param patronymic отчество
+     * @param sex пол
+     */
     public static void createCustomer(String login, String password, String name,
                                       String surname, String patronymic, boolean sex) {
         User user = new User(login, password, Role.CUSTOMER);
@@ -279,6 +334,15 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Создает аккаунт сотрудника
+     * @param login логин
+     * @param password пароль
+     * @param name имя
+     * @param surname фамилия
+     * @param patronymic отчество
+     * @param sex пол
+     */
     public static void createEmployee(String login, String password, String name,
                                       String surname, String patronymic, boolean sex) {
         User user = new User(login, password, Role.EMPLOYEE);
@@ -294,6 +358,11 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Создает аккаунт админа
+     * @param login логин
+     * @param password пароль
+     */
     public static void createAdmin(String login, String password) {
         User user = new User(login, password, Role.ADMIN);
 
@@ -304,6 +373,12 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Регистрирует абонемент клиента
+     * @param customer сущность клиента
+     * @param membershipType абонемент
+     * @param beginDate дата начала
+     */
     public static void createMembership(Customer customer, MembershipType membershipType, Date beginDate) {
         Membership membership = new Membership(customer, membershipType, beginDate);
 
@@ -314,6 +389,12 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Создает абонемент
+     * @param name наименование
+     * @param duration длительность
+     * @param hasTrainer наличие тренера
+     */
     public static void createMembershipType(String name, int duration, boolean hasTrainer) {
         MembershipType membershipType = new MembershipType(name, duration, hasTrainer);
 
@@ -324,6 +405,10 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Удаляет абонемент
+     * @param membershipType абонемент
+     */
     public static void removeMembershipType(MembershipType membershipType) {
         try {
             membershipTypeDao.delete(membershipType);
@@ -332,6 +417,9 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Если в БД нет ни одного админ-аккаунта, то создается дефолтный.
+     */
     public static void ensureAdminAccount() {
         try {
             List<User> admins = userDao.queryForEq("role", Role.ADMIN);

@@ -19,10 +19,19 @@ public class Customer {
         this.user = user;
     }
 
+    /**
+     * Возвращает ID клиента
+     *
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Возвращает сущность пользователя клиента
+     * @return сущность пользователя
+     */
     public User getUser() {
         return user;
     }

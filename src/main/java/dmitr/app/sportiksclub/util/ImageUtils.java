@@ -11,6 +11,12 @@ import java.nio.IntBuffer;
 
 public class ImageUtils {
 
+    /**
+     * Возвращает изображение на основе буфферизированного изображения
+     *
+     * @param image буфферизированного изображение
+     * @return изображение
+     */
     public static Image getImage(BufferedImage image) {
         BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB_PRE);
         newImage.createGraphics().drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);

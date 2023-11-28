@@ -9,6 +9,13 @@ import java.io.IOException;
 
 public class ExcelWorkbookUtils {
 
+    /**
+     * Записывает данные в xls таблицу и сохраняет её
+     *
+     * @param fileName     путь к файлу
+     * @param sheetCaption заголовок листа таблицы
+     * @param fields       поля
+     */
     public static void writeTable(String fileName, String sheetCaption, String[][] fields) {
         try (HSSFWorkbook workbook = new HSSFWorkbook();
              FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {

@@ -13,11 +13,22 @@ import java.util.Hashtable;
 
 public class BarcodeUtils {
 
+    /**
+     * Возвращает сгенерированное изобраэение QR-кода
+     *
+     * @param text текст
+     * @return изображение
+     */
     public static Image generateQrCodeImage(String text) {
         BufferedImage bufferedImage = generateQrCodeBufferedImage(text);
         return ImageUtils.getImage(bufferedImage);
     }
 
+    /**
+     * Возвращает буфферизированное изображение QR-кода
+     * @param text текст
+     * @return буфферизированное изображение
+     */
     public static BufferedImage generateQrCodeBufferedImage(String text) {
         QRCodeWriter barcodeWriter = new QRCodeWriter();
 

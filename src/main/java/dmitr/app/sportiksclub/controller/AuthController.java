@@ -7,7 +7,6 @@ import dmitr.app.sportiksclub.scene.SceneController;
 import dmitr.app.sportiksclub.util.SHA256Hasher;
 import dmitr.app.sportiksclub.util.SportiksAlertType;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -55,21 +54,13 @@ public class AuthController implements Initializable {
     }
 
     private void applyActions() {
-        authButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String login = loginTextField.getText();
-                String password = passwordTextField.getText();
-                auth(login, password, actionEvent);
-            }
+        authButton.setOnAction(actionEvent -> {
+            String login = loginTextField.getText();
+            String password = passwordTextField.getText();
+            auth(login, password, actionEvent);
         });
 
-        guestAuthButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneController.setScene(Scene.GUEST_MENU);
-            }
-        });
+        guestAuthButton.setOnAction(actionEvent -> SceneController.setScene(Scene.GUEST_MENU));
     }
 
     @Override

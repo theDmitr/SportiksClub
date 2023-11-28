@@ -4,6 +4,11 @@ import java.io.File;
 
 public class DatabaseUtils {
 
+    /**
+     * Возвращает путь к БД
+     *
+     * @return путь
+     */
     public static String getDatabasePath() {
         String userHome = System.getProperty("user.home");
         File appHome = new File(userHome, "/SportiksClub");

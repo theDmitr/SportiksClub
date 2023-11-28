@@ -13,10 +13,19 @@ public class SceneController {
 
     private static Stage stage;
 
+    /**
+     * Привязка контроллера сцен к окну
+     *
+     * @param stage окно
+     */
     public static void init(Stage stage) {
         SceneController.stage = stage;
     }
 
+    /**
+     * Установка сцены в привязанном окне
+     * @param scene сцена
+     */
     public static void setScene(dmitr.app.sportiksclub.scene.Scene scene) {
         FXMLLoader fxmlLoader = new FXMLLoader(scene.getSceneFile());
         Scene stageScene;
@@ -35,6 +44,12 @@ public class SceneController {
         SceneController.stage.show();
     }
 
+    /**
+     * Возвращает новое окно на основе сцены
+     * @param scene сцена
+     * @param iconStream поток иконки для заголовка окна
+     * @return окно
+     */
     public static Stage getStageByScene(dmitr.app.sportiksclub.scene.Scene scene, InputStream iconStream) {
         Stage tempStage = new Stage();
         tempStage.getIcons().add(new Image(iconStream));
@@ -60,6 +75,10 @@ public class SceneController {
         return tempStage;
     }
 
+    /**
+     * Возвращает привязанное окно
+     * @return окно
+     */
     public static Stage getStage() {
         return stage;
     }

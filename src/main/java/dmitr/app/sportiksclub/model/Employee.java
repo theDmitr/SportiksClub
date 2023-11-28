@@ -22,14 +22,27 @@ public class Employee {
         this.user = user;
     }
 
+    /**
+     * Возвращает ID сотрулника
+     *
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Возвращает сущность пользователя сотрулника
+     * @return сущность пользователя
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Возвращает опыт работы сотрудника
+     * @return опыт работы (int)
+     */
     public int getExperience() {
         return experience;
     }

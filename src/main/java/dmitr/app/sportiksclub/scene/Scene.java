@@ -43,18 +43,35 @@ public enum Scene {
         this.minHeight = minHeight;
     }
 
+    /**
+     * Возвращает заголовок
+     *
+     * @return заголовок
+     */
     public String getCaption() {
         return caption;
     }
 
+    /**
+     * Возвращает путь к файлу сцены
+     * @return путь
+     */
     public URL getSceneFile() {
         return sceneFile;
     }
 
+    /**
+     * Возвращает минимальную ширину окна
+     * @return ширина
+     */
     public double getMinWidth() {
         return minWidth;
     }
 
+    /**
+     * Возвращает минимальную высоту окна
+     * @return высота
+     */
     public double getMinHeight() {
         return minHeight;
     }

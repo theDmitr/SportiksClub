@@ -41,6 +41,11 @@ public class EditPersonController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    /**
+     * Установка редактируемой сущности Персоны
+     *
+     * @param person сущность Персоны
+     */
     public static void setEditablePerson(Person person) {
         editable = person;
     }

@@ -34,22 +34,43 @@ public class Membership {
         this.endDate = DateUtils.addDaysToDate(beginDate, membershipType.getDuration());
     }
 
+    /**
+     * Возвращает ID зарегистрированного абонемента
+     *
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Возвращает сущность клиента, на котрого зарегистриоован абонемент
+     * @return сущность клиента
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     * Возвращает сущность абонемента (на который подписан клиент)
+     * @return сущность абонемента
+     */
     public MembershipType getMembershipType() {
         return membershipType;
     }
 
+    /**
+     * Возвращает дату начала
+     * @return дата
+     */
     public Date getBeginDate() {
         return beginDate;
     }
 
+    /**
+     * Возвращает дату окончания
+     * @return дата
+     */
     public Date getEndDate() {
         return endDate;
     }

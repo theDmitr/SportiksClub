@@ -29,26 +29,51 @@ public class User {
         this.role = role;
     }
 
+    /**
+     * Возвращает ID пользователя
+     *
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Возвращает логин пользователя
+     * @return логин
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Устанавливает логин пользователя
+     * @param login
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * Возвращает пароль (хеш) пользователя
+     * @return пароль (хеш)
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Устанавливает пароль пользователя
+     * @param password пароль (хеш)
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Возвращает роль пользователя
+     * @return роль
+     */
     public Role getRole() {
         return role;
     }
