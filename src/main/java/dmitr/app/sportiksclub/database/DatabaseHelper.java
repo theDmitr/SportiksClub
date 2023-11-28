@@ -205,7 +205,7 @@ public class DatabaseHelper {
 
     /**
      * Удаляет абонемент клиента (Дерегистрация)
-     * @param membership
+     * @param membership абонемент
      */
     public static void removeMembership(Membership membership) {
         try {
